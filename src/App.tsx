@@ -1,19 +1,25 @@
-import {Header} from './Components/Header.tsx';
 import {Main} from './Components/Main.tsx';
+import {Layout} from './Layouts/Layout.tsx';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {AppRoute} from './Types/AppRoute.tsx';
+import {NotFoundPage} from './Pages/NotFoundPage.tsx';
+import {FavoritesPage} from './Pages/FavoritesPage.tsx';
+import {OfferPage} from './Pages/OfferPage.tsx';
+import {LoginPage} from './Pages/LoginPage.tsx';
 
-interface AppProps {
-  backgroundColor: string;
-  placesToStayCount: number;
-}
-
-export function App(props: AppProps) {
+export function App() {
   return (
-    <div className='page page--main' style={{
-      backgroundColor: props.backgroundColor
-    }}
-    >
-      <Header/>
-      <Main placesToStayCount={props.placesToStayCount}/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoute.Main} element={<Layout/>}>
+          <Route index element={<Main placesToStayCount={320}/>}/>
+        </Route>
+        <Route path={AppRoute.Favorites} element={<FavoritesPage/>}/>
+        <Route path={AppRoute.Offer} element={<OfferPage/>}/>
+        <Route path={AppRoute.Login} element={<LoginPage/>}/>
+        <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+
   );
 }

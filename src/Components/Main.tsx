@@ -1,8 +1,9 @@
 import {Card} from './Card.tsx';
+import {Fragment} from 'react';
 
 export function Main(props: {placesToStayCount: number}) {
   return (
-    <main className='page__main page__main--index'>
+    <Fragment>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -76,6 +77,6 @@ export function Main(props: {placesToStayCount: number}) {
           </div>
         </div>
       </div>
-    </main>
+    </Fragment>
   );
 }
