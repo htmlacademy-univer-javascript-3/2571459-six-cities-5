@@ -6,5 +6,5 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <App backgroundColor={'#f5f5f5'} placesToStayCount={320}/>
+  <App/>
 );
