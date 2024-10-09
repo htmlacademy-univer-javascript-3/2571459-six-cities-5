@@ -1,12 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {App} from './App.tsx';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <React.StrictMode>
-    <h1>Hello, World!</h1>
-  </React.StrictMode>
+  <App backgroundColor={'#f5f5f5'} placesToStayCount={320}/>
 );
