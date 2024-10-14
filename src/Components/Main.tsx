@@ -1,12 +1,12 @@
-import {Card} from './Card.tsx';
 import {Fragment} from 'react';
-import {Offers} from '../mocks/offers.ts';
+import {OfferListItem, OffersList} from './OffersList.tsx';
 
 type MainProps = {
   placesToStayCount: number;
+  offers: Array<OfferListItem>;
 }
 
-export function Main({placesToStayCount}: MainProps) {
+export function Main({placesToStayCount, offers}: MainProps) {
   return (
     <Fragment>
       <h1 className="visually-hidden">Cities</h1>
@@ -66,11 +66,7 @@ export function Main({placesToStayCount}: MainProps) {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {Offers.map((offerMock) => (
-                <Card key={offerMock.id} {...offerMock.props} />
-              ))}
-            </div>
+            <OffersList offers={offers}/>
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>

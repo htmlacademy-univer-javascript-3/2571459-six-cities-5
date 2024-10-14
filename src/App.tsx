@@ -8,13 +8,14 @@ import {OfferPage} from './Pages/OfferPage.tsx';
 import {LoginPage} from './Pages/LoginPage.tsx';
 import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
 import {AuthorizationStatus} from './Types/AuthorizationStatus.tsx';
+import {Offers} from './mocks/offers.ts';
 
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={<Layout/>}>
-          <Route index element={<Main placesToStayCount={320}/>}/>
+          <Route index element={<Main placesToStayCount={320} offers={Offers}/>}/>
         </Route>
         <Route
           path={AppRoute.Favorites}

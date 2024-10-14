@@ -1,4 +1,4 @@
-import {CardProps} from '../Components/Card.tsx';
+import {OfferListItem} from '../Components/OffersList.tsx';
 
 function CreateCardPropsMock(
   id: string,
@@ -8,7 +8,7 @@ function CreateCardPropsMock(
   starsCount: 0 | 1 | 2 | 3 | 4 | 5,
   priceValue: number,
   premium?: boolean,
-  inBookmarks?: boolean): {id: string; props: CardProps} {
+  inBookmarks?: boolean): OfferListItem {
   return {
     id: id,
     props: {
@@ -58,4 +58,4 @@ export const Offers = [
     true,
     true),
 
-] as const;
+];
