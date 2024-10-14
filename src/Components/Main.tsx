@@ -67,7 +67,7 @@ export function Main({placesToStayCount}: MainProps) {
             </form>
             <div className="cities__places-list places__list tabs__content">
 
-              <Card placeCardType={'Apartment'} priceValue={120} imageUrl={'img/apartment-01.jpg'}></Card>
+              <Card placeCardType={'Apartment'} premium priceValue={120} imageUrl={'img/apartment-01.jpg'}></Card>
               <Card placeCardType={'Room'} priceValue={80} imageUrl={'img/room.jpg'}></Card>
               <Card placeCardType={'Apartment'} priceValue={132} imageUrl={'img/apartment-02.jpg'}></Card>
               <Card placeCardType={'Apartment'} priceValue={180} imageUrl={'img/apartment-03.jpg'}></Card>
