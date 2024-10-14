@@ -20,7 +20,7 @@ export function App() {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorisationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorisationStatus={AuthorizationStatus.Auth}>
               <FavoritesPage/>
             </PrivateRoute>
           }

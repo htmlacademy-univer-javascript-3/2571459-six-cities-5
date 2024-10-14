@@ -1,4 +1,10 @@
-export function FavoritesPage() {
+import {OfferListItem} from '../Components/OffersList.tsx';
+
+type FavoritesPageProps = {
+  offers?: Array<OfferListItem>;
+}
+
+export function FavoritesPage({offers}: FavoritesPageProps) {
   return (
     <div className="page">
       <header className="header">
