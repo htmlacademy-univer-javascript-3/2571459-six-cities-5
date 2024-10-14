@@ -1,5 +1,6 @@
 import {Card} from './Card.tsx';
 import {Fragment} from 'react';
+import {Offers} from '../mocks/offers.ts';
 
 type MainProps = {
   placesToStayCount: number;
@@ -66,14 +67,9 @@ export function Main({placesToStayCount}: MainProps) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-
-              <Card placeCardType={'Apartment'} premium priceValue={120} imageUrl={'img/apartment-01.jpg'}></Card>
-              <Card placeCardType={'Room'} priceValue={80} imageUrl={'img/room.jpg'}></Card>
-              <Card placeCardType={'Apartment'} priceValue={132} imageUrl={'img/apartment-02.jpg'}></Card>
-              <Card placeCardType={'Apartment'} priceValue={180} imageUrl={'img/apartment-03.jpg'}></Card>
-              <Card placeCardType={'Room'} priceValue={80} imageUrl={'img/room.jpg'}></Card>
-
-
+              {Offers.map((offerMock) => (
+                <Card key={offerMock.id} {...offerMock.props} />
+              ))}
             </div>
           </section>
           <div className="cities__right-section">
