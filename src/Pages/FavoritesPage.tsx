@@ -1,7 +1,7 @@
-import {OfferListItem} from '../Components/OffersList.tsx';
+import {CardPropsMock} from '../mocks/MockHelpers.ts';
 
 type FavoritesPageProps = {
-  offers?: Array<OfferListItem>;
+  offers?: Array<CardPropsMock>;
 }
 
 export function FavoritesPage({offers}: FavoritesPageProps) {

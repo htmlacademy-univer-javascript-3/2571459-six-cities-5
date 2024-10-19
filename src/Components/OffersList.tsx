@@ -1,10 +1,9 @@
-import {Card, CardProps} from './Card.tsx';
+import {Card} from './Card.tsx';
+import {CardPropsMock} from '../mocks/MockHelpers.ts';
 
 type OffersListProps = {
-  offers: Array<OfferListItem>;
+  offers: Array<CardPropsMock>;
 }
-
-export type OfferListItem = { props: CardProps; id: string }
 
 export function OffersList({offers}: OffersListProps) {
   return (

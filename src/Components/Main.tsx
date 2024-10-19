@@ -1,9 +1,10 @@
 import {Fragment} from 'react';
-import {OfferListItem, OffersList} from './OffersList.tsx';
+import {OffersList} from './OffersList.tsx';
+import {CardPropsMock} from '../mocks/MockHelpers.ts';
 
 type MainProps = {
   placesToStayCount: number;
-  offers: Array<OfferListItem>;
+  offers: Array<CardPropsMock>;
 }
 
 export function Main({placesToStayCount, offers}: MainProps) {
