@@ -9,6 +9,7 @@ import {LoginPage} from './Pages/LoginPage.tsx';
 import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
 import {AuthorizationStatus} from './Types/AuthorizationStatus.tsx';
 import {Offers} from './mocks/offers.ts';
+import {Favorites} from './mocks/favorites.ts';
 
 export function App() {
   return (
@@ -21,7 +22,7 @@ export function App() {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorisationStatus={AuthorizationStatus.Auth}>
-              <FavoritesPage/>
+              <FavoritesPage favoritesMocks={Favorites}/>
             </PrivateRoute>
           }
         />
