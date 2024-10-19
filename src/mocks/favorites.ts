@@ -1,11 +1,25 @@
-import {CreateCardPropsMock} from './MockHelpers.ts';
+import {CardPropsMock, CreateCardPropsMock} from './MockHelpers.ts';
 
-export const Offers = [
+export type CityFavoritesCardsMock = {
+  cityName: string;
+  cardsProps: CardPropsMock[];
+}
+
+export type CityFavoritesMock = {
+  key: string;
+  cityFavoritesCardsMock: CityFavoritesCardsMock;
+}
+
+export type FavoritesListMocks = {
+  mocks: Array<CityFavoritesMock>;
+}
+
+export const Favorites = [
   CreateCardPropsMock(
     '1',
     'Beautiful & luxurious apartment at great location',
     'Apartment',
-    'img/apartment-01.jpg',
+    'img/apartment-small-03.jpg',
     4,
     120,
     true,
@@ -14,25 +28,18 @@ export const Offers = [
     '2',
     'Beautiful & luxurious apartment at great location',
     'Room',
-    'img/room.jpg',
+    'img/room-small.jpg',
     5,
     80,
-    true),
-  CreateCardPropsMock(
-    '3',
-    'Beautiful & luxurious apartment at great location',
-    'Apartment',
-    'img/apartment-02.jpg',
-    4,
-    132,
+    false,
     true),
   CreateCardPropsMock(
     '4',
     'Beautiful & luxurious apartment at great location',
     'Apartment',
-    'img/apartment-03.jpg',
+    'img/apartment-small-04.jpg',
     3,
     180,
-    true,
+    false,
     true),
 ];

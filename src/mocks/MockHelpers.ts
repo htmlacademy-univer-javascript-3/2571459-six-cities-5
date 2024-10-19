@@ -1,6 +1,9 @@
 import {CardProps} from '../Components/Card.tsx';
 
 export type CardPropsMock = { props: CardProps; id: string }
+export type CardPropsMockList = {
+  mocks: Array<CardPropsMock>;
+}
 
 export function CreateCardPropsMock(
   id: string,
