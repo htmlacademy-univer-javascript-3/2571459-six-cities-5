@@ -12,7 +12,7 @@ export const Offers = [
     true),
   CreateCardPropsMock(
     '2',
-    'Beautiful & luxurious apartment at great location',
+    'Wood and stone place',
     'Room',
     'img/room.jpg',
     5,
@@ -20,7 +20,7 @@ export const Offers = [
     true),
   CreateCardPropsMock(
     '3',
-    'Beautiful & luxurious apartment at great location',
+    'Canal View Prinsengracht',
     'Apartment',
     'img/apartment-02.jpg',
     4,
@@ -28,7 +28,7 @@ export const Offers = [
     true),
   CreateCardPropsMock(
     '4',
-    'Beautiful & luxurious apartment at great location',
+    'Nice, cozy, warm big bed apartment',
     'Apartment',
     'img/apartment-03.jpg',
     3,

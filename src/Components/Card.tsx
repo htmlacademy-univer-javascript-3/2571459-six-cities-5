@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../Types/AppRoute.tsx';
+
 export type CardProps = {
   placeCardType: 'Room' | 'Apartment';
   premium?: boolean;
@@ -46,7 +49,7 @@ export function Card({placeCardType, premium, priceValue, name, imageUrl, starsC
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name}</a>
+          <Link to={AppRoute.Offer}>{name}</Link>
         </h2>
         <p className="place-card__type">{placeCardType}</p>
       </div>
