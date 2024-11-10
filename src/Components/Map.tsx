@@ -3,7 +3,7 @@ import {useMap} from '../hooks/useMap.tsx';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const.ts';
-import {Point} from "../mocks/points.ts";
+import {Point} from '../mocks/MockHelpers.ts';
 
 
 type City = {
@@ -50,14 +50,13 @@ export function Map({city, points, selectedPoint}: MapProps){
           .addTo(map);
       });
     }
-  }, [map, points, selectedPoint]);
+  }, [currentCustomIcon, defaultCustomIcon, map, points, selectedPoint]);
 
   return (
     <div
       style={{ height: '500px', width: '500px' }}
       ref={mapRef}
     >
-
     </div>
   );
 }

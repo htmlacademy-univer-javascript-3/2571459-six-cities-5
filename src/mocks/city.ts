@@ -1,6 +1,6 @@
 export const CITY = {
-  title: 'Нью-Йорк',
-  lat: 40.835292,
-  lng: -73.916236,
-  zoom: 10,
+  title: 'Амстердам',
+  lat: 52.370228,
+  lng: 4.902137,
+  zoom: 11,
 };

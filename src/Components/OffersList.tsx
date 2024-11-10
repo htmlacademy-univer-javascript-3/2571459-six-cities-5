@@ -1,14 +1,17 @@
 import {Card} from './Card.tsx';
-import {CardPropsMock} from '../mocks/MockHelpers.ts';
+import {CardMock} from '../mocks/MockHelpers.ts';
+import React from 'react';
 
 type OffersListProps = {
-  mocks: Array<CardPropsMock>;
-  onListItemHover: any;
+  mocks: Array<CardMock>;
+  onListItemHover: (lastId: string) => void;
 }
 
 export function OffersList({mocks, onListItemHover}: OffersListProps) {
-  const handleListItemHover = (evt) => {
-    onListItemHover(evt.target.innerText);
+
+  const handleListItemHover = (evt: React.MouseEvent<HTMLElement>) => {
+    const target = evt.target as HTMLElement;
+    onListItemHover(target.innerText);
   };
 
   return (
