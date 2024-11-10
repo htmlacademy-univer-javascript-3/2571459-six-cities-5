@@ -1,19 +1,28 @@
 import {CardProps} from '../Components/Card.tsx';
 
-export type CardPropsMock = { props: CardProps; id: string }
-export type CardPropsMockList = {
-  mocks: Array<CardPropsMock>;
+export type Point = {
+  title: string;
+  lat: number;
+  lng: number;
 }
 
-export function CreateCardPropsMock(
+export type CardMock = {
+  props: CardProps;
+  point: Point;
+  id: string;
+}
+
+export function CreateCardMock(
   id: string,
   name: string,
   placeCardType: 'Room' | 'Apartment',
   imageUrl: string,
   starsCount: 0 | 1 | 2 | 3 | 4 | 5,
   priceValue: number,
+  lat: number,
+  lng: number,
   premium?: boolean,
-  inBookmarks?: boolean): CardPropsMock {
+  inBookmarks?: boolean): CardMock {
   return {
     id: id,
     props: {
@@ -24,5 +33,11 @@ export function CreateCardPropsMock(
       priceValue: priceValue,
       premium: premium,
       inBookmarks: inBookmarks
-    }};
+    },
+    point: {
+      title: name,
+      lat: lat,
+      lng: lng,
+    }
+  };
 }

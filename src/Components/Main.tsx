@@ -1,13 +1,24 @@
-import {Fragment} from 'react';
+import {Fragment, useState} from 'react';
 import {OffersList} from './OffersList.tsx';
-import {CardPropsMock} from '../mocks/MockHelpers.ts';
+import {CardMock, Point} from '../mocks/MockHelpers.ts';
+import {Map} from './Map.tsx';
+import {CITY} from '../mocks/city.ts';
+import {Offers} from '../mocks/offers.ts';
 
 type MainProps = {
   placesToStayCount: number;
-  offers: Array<CardPropsMock>;
+  offers: Array<CardMock>;
 }
 
 export function Main({placesToStayCount, offers}: MainProps) {
+  const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
+  const handleListItemHover = (lastTitle: string) => {
+    const currentPoint = Offers.map((x) => x.point).find((cardMock) =>
+      cardMock.title === lastTitle,
+    );
+    setSelectedPoint(currentPoint || null);
+  };
+
   return (
     <Fragment>
       <h1 className="visually-hidden">Cities</h1>
@@ -67,10 +78,12 @@ export function Main({placesToStayCount, offers}: MainProps) {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <OffersList mocks={offers}/>
+            <OffersList mocks={offers} onListItemHover={handleListItemHover}/>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section className="map">
+              <Map city={CITY} points={Offers.map((x) => x.point)} selectedPoint={selectedPoint}/>
+            </section>
           </div>
         </div>
       </div>
