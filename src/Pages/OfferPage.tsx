@@ -1,4 +1,9 @@
 import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
+import {ReviewList} from '../Components/ReviewList.tsx';
+import {ReviewMocks} from '../mocks/reviews.ts';
+import {CITY} from '../mocks/city.ts';
+import {Offers} from '../mocks/offers.ts';
+import {Map} from '../Components/Map.tsx';
 
 export function OfferPage() {
   return (
@@ -152,36 +157,26 @@ export function OfferPage() {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
-                      </div>
-                      <span className="reviews__user-name">
-                        Max
-                      </span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{width: '80%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">
-                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                      </p>
-                      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                    </div>
-                  </li>
-                </ul>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ReviewMocks.length}</span></h2>
+                <ReviewList mocks={ReviewMocks}/>
                 <CommentSendingForm/>
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="map"
+            style={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <Map
+              city={CITY}
+              points={Offers.map((x) => x.point)}
+              selectedPoint={Offers[1].point}
+              height={'600px'}
+              width={'1100px'}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

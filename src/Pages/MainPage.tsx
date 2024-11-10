@@ -1,16 +1,16 @@
 import {Fragment, useState} from 'react';
-import {OffersList} from './OffersList.tsx';
 import {CardMock, Point} from '../mocks/MockHelpers.ts';
-import {Map} from './Map.tsx';
 import {CITY} from '../mocks/city.ts';
 import {Offers} from '../mocks/offers.ts';
+import {OffersList} from '../Components/OffersList.tsx';
+import {Map} from '../Components/Map.tsx';
 
 type MainProps = {
   placesToStayCount: number;
   offers: Array<CardMock>;
 }
 
-export function Main({placesToStayCount, offers}: MainProps) {
+export function MainPage({placesToStayCount, offers}: MainProps) {
   const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
   const handleListItemHover = (lastTitle: string) => {
     const currentPoint = Offers.map((x) => x.point).find((cardMock) =>
@@ -82,7 +82,13 @@ export function Main({placesToStayCount, offers}: MainProps) {
           </section>
           <div className="cities__right-section">
             <section className="map">
-              <Map city={CITY} points={Offers.map((x) => x.point)} selectedPoint={selectedPoint}/>
+              <Map
+                city={CITY}
+                points={Offers.map((x) => x.point)}
+                selectedPoint={selectedPoint}
+                height={'500px'}
+                width={'500px'}
+              />
             </section>
           </div>
         </div>
