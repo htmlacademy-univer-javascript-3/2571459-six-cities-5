@@ -1,5 +1,6 @@
-import {CardProps} from '../Components/Card.tsx';
+
 import {CityFavoritesCardsMock, CityFavoritesMock} from '../mocks/favorites.ts';
+import {CardProps} from '../Components/CardBase.tsx';
 
 
 function FavoritesCard({placeCardType, premium, priceValue, name, imageUrl, starsCount}: CardProps) {

@@ -1,4 +1,4 @@
-import {Card} from './Card.tsx';
+import {CityCard} from './CityCard.tsx';
 import {CardMock} from '../mocks/MockHelpers.ts';
 import React from 'react';
 
@@ -21,7 +21,7 @@ export function OffersList({mocks, onListItemHover}: OffersListProps) {
           key={offerMock.id}
           onMouseEnter={handleListItemHover}
         >
-          <Card {...offerMock.props} />
+          <CityCard {...offerMock.props} />
         </div>
       ))}
     </div>);

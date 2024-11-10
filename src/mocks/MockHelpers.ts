@@ -1,4 +1,4 @@
-import {CardProps} from '../Components/Card.tsx';
+import {CardProps} from '../Components/CardBase.tsx';
 
 export type Point = {
   title: string;

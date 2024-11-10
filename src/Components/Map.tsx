@@ -17,9 +17,11 @@ type MapProps = {
   city: City;
   points: Point[];
   selectedPoint: Point | null;
+  width: string;
+  height: string;
 }
 
-export function Map({city, points, selectedPoint}: MapProps){
+export function Map({city, points, selectedPoint, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
   const map = useMap(mapRef, city);
 
@@ -54,7 +56,7 @@ export function Map({city, points, selectedPoint}: MapProps){
 
   return (
     <div
-      style={{ height: '500px', width: '500px' }}
+      style={{ height: height, width: width }}
       ref={mapRef}
     >
     </div>
