@@ -11,17 +11,23 @@ export type CardProps = {
   starsCount: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
-export function Card({placeCardType, premium, priceValue, name, imageUrl, starsCount, inBookmarks}: CardProps) {
+type CardBaseProps = CardProps & {
+  cardType: 'cities' | 'near-places';
+}
+
+export function CardBase({placeCardType, premium, priceValue, name, imageUrl, starsCount, inBookmarks, cardType}: CardBaseProps) {
   const starsWidth = `${starsCount * 20}%`;
   const bookmarkClass = `place-card__bookmark-button ${inBookmarks && 'place-card__bookmark-button--active'} button`;
+  const articleClass = `${cardType}__card place-card`;
+  const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
   return (
-    <article className="cities__card place-card">
+    <article className={articleClass}>
       {premium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={imageWrapperClass}>
         <a href="#">
           <img className="place-card__image" src={imageUrl} width="260" height="200"
             alt="Place image"

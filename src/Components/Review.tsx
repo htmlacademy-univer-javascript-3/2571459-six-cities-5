@@ -1,4 +1,4 @@
-import {Fragment} from "react";
+import {Fragment} from 'react';
 
 export type ReviewProps = {
   avatarUrl: string;
