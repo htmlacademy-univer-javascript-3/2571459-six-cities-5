@@ -40,7 +40,21 @@ export const loginAction = createAsyncThunk<void, LoginCredentials, {
   'login',
   async ({email, password}, {dispatch, extra: api}) => {
     const {data} = await api.post<LoginResponse>(ApiRoute.Login, {email, password});
-    dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    if (data.token && data.token !== '') {
+      dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+      dispatch(setLogin(data.email));
+    }
+  },
+);
+
+export const checkAuth = createAsyncThunk<void, undefined, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'checkAuth',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<LoginResponse>(ApiRoute.Login);
     dispatch(setLogin(data.email));
+    dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
   },
 );

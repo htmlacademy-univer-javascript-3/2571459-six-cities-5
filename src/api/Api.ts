@@ -1,5 +1,8 @@
 import axios, {AxiosError} from 'axios';
 import {API_URL} from '../constants/constants.ts';
+import {useDispatch} from 'react-redux';
+import {setAuthorizationStatus} from '../Store/actions.ts';
+import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
 
 export const api = axios.create({
@@ -10,9 +13,9 @@ export const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
+    const dispatch = useDispatch();
     if (error.response && error.response.status === 401) {
-      // Обработка 401 ошибки
-      window.location.href = '/login';
+      dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     }
     return Promise.reject(error);
   }
