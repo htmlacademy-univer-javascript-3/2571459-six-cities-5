@@ -1,19 +1,12 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities.ts';
-import {Offers} from '../mocks/offers.ts';
-import {CardMock} from '../mocks/MockHelpers.ts';
 import {updateCity, updateOffers} from './actions.ts';
-import {City} from '../Types/City.ts';
+import {AppState} from '../Types/AppState.ts';
 
 
-type State = {
-  city: City;
-  offers: CardMock[];
-}
-
-const initialState: State = {
+const initialState: AppState = {
   city: cities[5],
-  offers: Offers,
+  offers: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {

@@ -1,13 +1,13 @@
 import {CityCard} from './CityCard.tsx';
-import {CardMock} from '../mocks/MockHelpers.ts';
 import React from 'react';
+import {Offer} from '../Types/Offer.ts';
 
 type OffersListProps = {
-  mocks: Array<CardMock>;
+  offers: Array<Offer>;
   onListItemHover: (lastId: string) => void;
 }
 
-export function OffersList({mocks, onListItemHover}: OffersListProps) {
+export function OffersList({offers, onListItemHover}: OffersListProps) {
 
   const handleListItemHover = (evt: React.MouseEvent<HTMLElement>) => {
     const target = evt.target as HTMLElement;
@@ -16,12 +16,12 @@ export function OffersList({mocks, onListItemHover}: OffersListProps) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {mocks.map((offerMock) => (
+      {offers.map((offer) => (
         <div
-          key={offerMock.id}
+          key={offer.id}
           onMouseEnter={handleListItemHover}
         >
-          <CityCard {...offerMock.props} />
+          <CityCard {...offer} />
         </div>
       ))}
     </div>);

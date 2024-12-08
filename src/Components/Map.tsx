@@ -1,15 +1,15 @@
 import {useEffect, useRef} from 'react';
-import {useMap} from '../hooks/useMap.tsx';
+import {useMap} from '../hooks/useMap.ts';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const.ts';
-import {Point} from '../mocks/MockHelpers.ts';
 import {useStore} from '../hooks/useStore.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants/constants.ts';
+import {City} from '../Types/City.ts';
 
 
 type MapProps = {
-  points: Point[];
-  selectedPoint: Point | null;
+  points: City[];
+  selectedPoint: City | null;
   width: string;
   height: string;
 }
@@ -38,8 +38,8 @@ export function Map({points, selectedPoint, width, height}: MapProps){
       points.forEach((point) => {
         leaflet
           .marker({
-            lat: point.lat,
-            lng: point.lng,
+            lat: point.location.latitude,
+            lng: point.location.longitude,
           }, {
             icon: (point.name === selectedPoint?.name)
               ? currentCustomIcon

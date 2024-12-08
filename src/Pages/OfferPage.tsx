@@ -1,11 +1,15 @@
 import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
 import {ReviewList} from '../Components/ReviewList.tsx';
 import {ReviewMocks} from '../mocks/reviews.ts';
-import {Offers} from '../mocks/offers.ts';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
+import {Offer} from '../Types/Offer.ts';
 
-export function OfferPage() {
+type OfferPageProps = {
+  nearbyOffers: Offer[];
+}
+
+export function OfferPage({nearbyOffers}: OfferPageProps) {
   return (
     <div className="page">
       <header className="header">
@@ -171,8 +175,8 @@ export function OfferPage() {
             }}
           >
             <Map
-              points={Offers.map((x) => x.point)}
-              selectedPoint={Offers[0].point}
+              points={nearbyOffers.map((x) => x.city)}
+              selectedPoint={nearbyOffers[0].city}
               height={'600px'}
               width={'1100px'}
             />
@@ -181,7 +185,7 @@ export function OfferPage() {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <NeighbourhoodCardList mocks={[Offers[1], Offers[2], Offers[3]]}/>
+            <NeighbourhoodCardList mocks={[nearbyOffers[1], nearbyOffers[2], nearbyOffers[3]]}/>
           </section>
         </div>
       </main>
