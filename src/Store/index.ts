@@ -1,8 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {updateState} from './reducer.ts';
+import {reducer} from './reducer.ts';
 
-export const store = configureStore({
-  reducer: {
-    updateState: updateState
-  }
-});
+export const store = configureStore({reducer: reducer});

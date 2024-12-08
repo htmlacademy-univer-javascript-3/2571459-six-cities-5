@@ -1,9 +1,10 @@
 import {Fragment, useState} from 'react';
 import {CardMock, Point} from '../mocks/MockHelpers.ts';
-import {CITY} from '../mocks/city.ts';
+import {cities} from '../mocks/cities.ts';
 import {Offers} from '../mocks/offers.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
+import {CityList} from '../Components/CityList.tsx';
 
 type MainProps = {
   placesToStayCount: number;
@@ -22,42 +23,7 @@ export function MainPage({placesToStayCount, offers}: MainProps) {
   return (
     <Fragment>
       <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-      </div>
+      <CityList cities={cities}/>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
@@ -83,7 +49,7 @@ export function MainPage({placesToStayCount, offers}: MainProps) {
           <div className="cities__right-section">
             <section className="map">
               <Map
-                city={CITY}
+                city={cities[5]}
                 points={Offers.map((x) => x.point)}
                 selectedPoint={selectedPoint}
                 height={'500px'}
