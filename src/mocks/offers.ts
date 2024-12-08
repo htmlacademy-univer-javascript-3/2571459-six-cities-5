@@ -1,5 +1,5 @@
 import {CardMock, CreateCardMock} from './MockHelpers.ts';
-import {cities} from "./cities.ts";
+import {cities} from './cities.ts';
 
 export const Offers: CardMock[] = [
   CreateCardMock(
