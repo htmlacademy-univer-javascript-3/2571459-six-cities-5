@@ -16,6 +16,7 @@ import {Spinner} from './Components/Spinner.tsx';
 
 
 store.dispatch(fetchOffersAction());
+
 export function App() {
   const isLoading = useAppStoreSelector((state) => state.loading);
   if (isLoading){
