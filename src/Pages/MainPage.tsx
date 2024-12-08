@@ -3,7 +3,7 @@ import {cities} from '../mocks/cities.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
-import {useAppStoreSelector} from '../hooks/useStore.ts';
+import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {City} from '../Types/City.ts';
 
 

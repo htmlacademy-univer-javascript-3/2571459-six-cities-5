@@ -11,7 +11,7 @@ import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
 import {AuthorizationStatus} from './constants/AuthorizationStatus.ts';
 import {fetchOffersAction} from './api/ApiClient.ts';
-import {useAppStoreSelector} from './hooks/useStore.ts';
+import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';
 
 
