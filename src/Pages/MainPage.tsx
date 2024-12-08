@@ -3,14 +3,14 @@ import {cities} from '../mocks/cities.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
-import {useAppStore} from '../hooks/useStore.ts';
+import {useAppStoreSelector} from '../hooks/useStore.ts';
 import {City} from '../Types/City.ts';
 
 
 export function MainPage() {
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
-  const activeCity = useAppStore((state) => state.city);
-  const offers = useAppStore((state) => state.offers
+  const activeCity = useAppStoreSelector((state) => state.city);
+  const offers = useAppStoreSelector((state) => state.offers
     .filter((offer) => offer.city.name === activeCity.name)
   );
   const handleListItemHover = (lastTitle: string) => {
