@@ -1,7 +1,6 @@
 import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
 import {ReviewList} from '../Components/ReviewList.tsx';
 import {ReviewMocks} from '../mocks/reviews.ts';
-import {CITY} from '../mocks/city.ts';
 import {Offers} from '../mocks/offers.ts';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
@@ -172,7 +171,6 @@ export function OfferPage() {
             }}
           >
             <Map
-              city={CITY}
               points={Offers.map((x) => x.point)}
               selectedPoint={Offers[0].point}
               height={'600px'}

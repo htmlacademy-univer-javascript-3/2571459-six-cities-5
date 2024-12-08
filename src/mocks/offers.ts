@@ -1,4 +1,5 @@
 import {CardMock, CreateCardMock} from './MockHelpers.ts';
+import {cities} from './cities.ts';
 
 export const Offers: CardMock[] = [
   CreateCardMock(
@@ -10,6 +11,7 @@ export const Offers: CardMock[] = [
     120,
     52.3909553943508,
     4.85309666406198,
+    cities[5],
     true,
     true),
   CreateCardMock(
@@ -21,6 +23,7 @@ export const Offers: CardMock[] = [
     80,
     52.3609553943508,
     4.85309666406198,
+    cities[5],
     true),
   CreateCardMock(
     '3',
@@ -31,6 +34,7 @@ export const Offers: CardMock[] = [
     132,
     52.3909553943508,
     4.929309666406198,
+    cities[5],
     true),
   CreateCardMock(
     '4',
@@ -41,6 +45,7 @@ export const Offers: CardMock[] = [
     180,
     52.3809553943508,
     4.939309666406198,
+    cities[0],
     true,
     true),
 ];
