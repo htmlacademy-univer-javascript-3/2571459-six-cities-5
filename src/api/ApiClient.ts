@@ -28,22 +28,24 @@ type LoginResponse =
   token: string;
 }
 
-type LoginCredentials = {
+type LoginData = {
   email: string;
   password: string;
 };
 
-export const loginAction = createAsyncThunk<void, LoginCredentials, {
+export const login = createAsyncThunk<void, LoginData, {
   dispatch: Dispatch;
   extra: AxiosInstance;
 }>(
   'login',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data} = await api.post<LoginResponse>(ApiRoute.Login, {email, password});
-    if (data.token && data.token !== '') {
-      dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-      dispatch(setLogin(data.email));
-    }
+    try {
+      const {data} = await api.post<LoginResponse>(ApiRoute.Login, {email, password});
+      if (data.token && data.token !== '') {
+        dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+        dispatch(setLogin(data.email));
+      }
+    } catch (e) { /* empty */ }
   },
 );
 
