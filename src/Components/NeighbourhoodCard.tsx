@@ -1,16 +1,16 @@
 import {CardBase, CardProps} from './CardBase.tsx';
 
-export function NeighbourhoodCard({placeCardType, premium, priceValue, name, imageUrl, starsCount, inBookmarks}: CardProps) {
+export function NeighbourhoodCard({type, isPremium, price, title, previewImage, rating, isFavorite}: CardProps) {
   return (
     <CardBase
-      placeCardType={placeCardType}
-      priceValue={priceValue}
-      name={name}
-      imageUrl={imageUrl}
-      starsCount={starsCount}
+      type={type}
+      price={price}
+      title={title}
+      previewImage={previewImage}
+      rating={rating}
       cardType={'near-places'}
-      premium={premium}
-      inBookmarks={inBookmarks}
+      isPremium={isPremium}
+      isFavorite={isFavorite}
     />
   );
 }

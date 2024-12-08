@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux';
-import {City} from '../Types/types.ts';
 import {updateCity} from '../Store/actions.ts';
 import {useStore} from '../hooks/useStore.ts';
+import {City} from '../Types/City.ts';
 
 type CityListProps = {
   cities: City[];

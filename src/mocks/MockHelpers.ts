@@ -1,5 +1,5 @@
 import {CardProps} from '../Components/CardBase.tsx';
-import {City} from '../Types/types.ts';
+import {City} from '../Types/City.ts';
 
 export type Point = {
   name: string;
@@ -29,13 +29,13 @@ export function CreateCardMock(
   return {
     id: id,
     props: {
-      name: name,
-      placeCardType: placeCardType,
-      imageUrl: imageUrl,
-      starsCount: starsCount,
-      priceValue: priceValue,
-      premium: premium,
-      inBookmarks: inBookmarks,
+      title: name,
+      type: placeCardType,
+      previewImage: imageUrl,
+      rating: starsCount,
+      price: priceValue,
+      isPremium: premium,
+      isFavorite: inBookmarks,
     },
     point: {
       name: name,

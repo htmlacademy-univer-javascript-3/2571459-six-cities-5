@@ -3,23 +3,23 @@ import {CityFavoritesCardsMock, CityFavoritesMock} from '../mocks/favorites.ts';
 import {CardProps} from '../Components/CardBase.tsx';
 
 
-function FavoritesCard({placeCardType, premium, priceValue, name, imageUrl, starsCount}: CardProps) {
-  const starsWidth = `${starsCount * 20}%`;
+function FavoritesCard({type, isPremium, price, title, previewImage, rating}: CardProps) {
+  const starsWidth = `${rating * 20}%`;
   return (
     <article className="favorites__card place-card">
-      {premium &&
+      {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={imageUrl} width="150" height="110" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
         </a>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{priceValue}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -36,9 +36,9 @@ function FavoritesCard({placeCardType, premium, priceValue, name, imageUrl, star
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name}</a>
+          <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{placeCardType}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>);
 }

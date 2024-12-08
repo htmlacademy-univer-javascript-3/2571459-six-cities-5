@@ -17,7 +17,7 @@ type MapProps = {
 export function Map({points, selectedPoint, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
   const activeCity = useStore((state) => state.city);
-  const map = useMap(mapRef, {lat: activeCity.lat, lng: activeCity.lng, zoom: 11});
+  const map = useMap(mapRef, {lat: activeCity.location.latitude, lng: activeCity.location.longitude, zoom: 11});
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -33,7 +33,7 @@ export function Map({points, selectedPoint, width, height}: MapProps){
 
   useEffect(() => {
     if (map) {
-      map.setView([activeCity.lat, activeCity.lng], 11);
+      map.setView([activeCity.location.latitude, activeCity.location.longitude], 11);
 
       points.forEach((point) => {
         leaflet
