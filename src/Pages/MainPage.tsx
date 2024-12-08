@@ -1,24 +1,25 @@
 import {Fragment, useState} from 'react';
-import {CardMock, Point} from '../mocks/MockHelpers.ts';
+import {Point} from '../mocks/MockHelpers.ts';
 import {cities} from '../mocks/cities.ts';
 import {Offers} from '../mocks/offers.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
+import {useStore} from '../hooks/useStore.ts';
 
-type MainProps = {
-  placesToStayCount: number;
-  offers: Array<CardMock>;
-}
 
-export function MainPage({placesToStayCount, offers}: MainProps) {
+export function MainPage() {
   const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
   const handleListItemHover = (lastTitle: string) => {
     const currentPoint = Offers.map((x) => x.point).find((cardMock) =>
-      cardMock.title === lastTitle,
+      cardMock.name === lastTitle,
     );
     setSelectedPoint(currentPoint || null);
   };
+  const activeCity = useStore((state) => state.city);
+  const offers = useStore((state) => state.offers
+    .filter((offer) => offer.props.city.name === activeCity.name)
+  );
 
   return (
     <Fragment>
@@ -28,7 +29,7 @@ export function MainPage({placesToStayCount, offers}: MainProps) {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placesToStayCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -49,8 +50,7 @@ export function MainPage({placesToStayCount, offers}: MainProps) {
           <div className="cities__right-section">
             <section className="map">
               <Map
-                city={cities[5]}
-                points={Offers.map((x) => x.point)}
+                points={offers.map((x) => x.point)}
                 selectedPoint={selectedPoint}
                 height={'500px'}
                 width={'500px'}

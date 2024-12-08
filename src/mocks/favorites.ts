@@ -1,4 +1,5 @@
 import {CardMock, CreateCardMock} from './MockHelpers.ts';
+import {cities} from './cities.ts';
 
 export type CityFavoritesCardsMock = {
   cityName: string;
@@ -25,6 +26,7 @@ export const Favorites: CityFavoritesMock[] = [
           120,
           52.3909553943508,
           4.929309666406198,
+          cities[0],
           true,
           true),
       ]
@@ -44,6 +46,7 @@ export const Favorites: CityFavoritesMock[] = [
           80,
           52.3909553943508,
           4.85309666406198,
+          cities[0],
           false,
           true),
         CreateCardMock(
@@ -55,6 +58,7 @@ export const Favorites: CityFavoritesMock[] = [
           180,
           52.3609553943508,
           4.85309666406198,
+          cities[0],
           false,
           true),
       ]

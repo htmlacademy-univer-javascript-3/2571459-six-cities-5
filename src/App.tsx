@@ -7,7 +7,6 @@ import {OfferPage} from './Pages/OfferPage.tsx';
 import {LoginPage} from './Pages/LoginPage.tsx';
 import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
 import {AuthorizationStatus} from './Types/AuthorizationStatus.ts';
-import {Offers} from './mocks/offers.ts';
 import {Favorites} from './mocks/favorites.ts';
 import {MainPage} from './Pages/MainPage.tsx';
 import {Provider} from 'react-redux';
@@ -19,7 +18,7 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route path={AppRoute.Main} element={<Layout/>}>
-            <Route index element={<MainPage placesToStayCount={320} offers={Offers}/>}/>
+            <Route index element={<MainPage/>}/>
           </Route>
           <Route
             path={AppRoute.Favorites}
