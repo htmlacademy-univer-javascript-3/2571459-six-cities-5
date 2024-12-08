@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
-import {CardMock} from '../mocks/MockHelpers.ts';
-import {City} from '../Types/types.ts';
+import {City} from '../Types/City.ts';
+import {Offer} from '../Types/Offer.ts';
 
-export const updateOffers = createAction<{offers: CardMock[]}>('setOffers');
-export const updateCity = createAction<{city: City}>('setCity');
+export const setOffers = createAction<Offer[]>('setOffers');
+export const setCity = createAction<City>('setCity');
+export const setOffersLoading = createAction<boolean>('offers/isLoading');

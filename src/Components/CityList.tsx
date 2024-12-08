@@ -1,18 +1,18 @@
 import {useDispatch} from 'react-redux';
-import {City} from '../Types/types.ts';
-import {updateCity} from '../Store/actions.ts';
-import {useStore} from '../hooks/useStore.ts';
+import {setCity} from '../Store/actions.ts';
+import {useAppStoreSelector} from '../hooks/useStore.ts';
+import {City} from '../Types/City.ts';
 
 type CityListProps = {
   cities: City[];
 }
 
 export function CityList({cities}: CityListProps) {
-  const currentCity = useStore((state) => state.city);
+  const currentCity = useAppStoreSelector((state) => state.city);
   const dispatch = useDispatch();
 
   function onCityClick(city: City) {
-    dispatch(updateCity({city}));
+    dispatch(setCity(city));
   }
 
   return (

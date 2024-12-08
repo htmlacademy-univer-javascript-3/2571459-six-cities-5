@@ -1,27 +1,24 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {City} from '../Types/types.ts';
 import {cities} from '../mocks/cities.ts';
-import {Offers} from '../mocks/offers.ts';
-import {CardMock} from '../mocks/MockHelpers.ts';
-import {updateCity, updateOffers} from './actions.ts';
+import {setOffersLoading, setCity, setOffers} from './actions.ts';
+import {AppState} from '../Types/AppState.ts';
 
 
-type State = {
-  city: City;
-  offers: CardMock[];
-}
-
-const initialState: State = {
+const initialState: AppState = {
   city: cities[5],
-  offers: Offers,
+  offers: [],
+  loading: true,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(updateCity, (state, action) => {
-      state.city = action.payload.city;
+    .addCase(setCity, (state, action) => {
+      state.city = action.payload;
     })
-    .addCase(updateOffers, (state, action) => {
-      state.offers = action.payload.offers;
+    .addCase(setOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(setOffersLoading, (state, action) => {
+      state.loading = action.payload;
     });
 });

@@ -1,50 +1,48 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../Types/AppRoute.ts';
+import {AppRoute} from '../constants/AppRoute.ts';
 
 export type CardProps = {
-  placeCardType: 'Room' | 'Apartment';
-  premium?: boolean;
-  inBookmarks?: boolean;
-  priceValue: number;
-  name: string;
-  imageUrl: string;
-  starsCount: 0 | 1 | 2 | 3 | 4 | 5;
+  type: 'Room' | 'Apartment';
+  isPremium?: boolean;
+  isFavorite?: boolean;
+  price: number;
+  title: string;
+  previewImage: string;
+  rating: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
 type CardBaseProps = CardProps & {
   cardType: 'cities' | 'near-places';
 }
 
-export function CardBase({placeCardType, premium, priceValue, name, imageUrl, starsCount, inBookmarks, cardType}: CardBaseProps) {
-  const starsWidth = `${starsCount * 20}%`;
-  const bookmarkClass = `place-card__bookmark-button ${inBookmarks && 'place-card__bookmark-button--active'} button`;
+export function CardBase({type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
+  const starsWidth = `${rating * 20}%`;
+  const bookmarkClass = `place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`;
   const articleClass = `${cardType}__card place-card`;
   const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
   return (
     <article className={articleClass}>
-      {premium &&
+      {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
 
       <div className={imageWrapperClass}>
         <a href="#">
-          <img className="place-card__image" src={imageUrl} width="260" height="200"
-            alt="Place image"
-          />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{priceValue}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className={bookmarkClass} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            {inBookmarks ? <span className="visually-hidden">In bookmarks</span> :
+            {isFavorite ? <span className="visually-hidden">In bookmarks</span> :
               <span className="visually-hidden">To bookmarks</span>}
           </button>
         </div>
@@ -55,9 +53,9 @@ export function CardBase({placeCardType, premium, priceValue, name, imageUrl, st
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{name}</Link>
+          <Link to={AppRoute.Offer}>{title}</Link>
         </h2>
-        <p className="place-card__type">{placeCardType}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>);
 }

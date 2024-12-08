@@ -1,23 +1,23 @@
 import {useEffect, useRef} from 'react';
-import {useMap} from '../hooks/useMap.tsx';
+import {useMap} from '../hooks/useMap.ts';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const.ts';
-import {Point} from '../mocks/MockHelpers.ts';
-import {useStore} from '../hooks/useStore.ts';
+import {useAppStoreSelector} from '../hooks/useStore.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants/constants.ts';
+import {City} from '../Types/City.ts';
 
 
 type MapProps = {
-  points: Point[];
-  selectedPoint: Point | null;
+  points: City[];
+  selectedPoint: City | null;
   width: string;
   height: string;
 }
 
 export function Map({points, selectedPoint, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const activeCity = useStore((state) => state.city);
-  const map = useMap(mapRef, {lat: activeCity.lat, lng: activeCity.lng, zoom: 11});
+  const activeCity = useAppStoreSelector((state) => state.city);
+  const map = useMap(mapRef, {lat: activeCity.location.latitude, lng: activeCity.location.longitude, zoom: 11});
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -33,13 +33,13 @@ export function Map({points, selectedPoint, width, height}: MapProps){
 
   useEffect(() => {
     if (map) {
-      map.setView([activeCity.lat, activeCity.lng], 11);
+      map.setView([activeCity.location.latitude, activeCity.location.longitude], 11);
 
       points.forEach((point) => {
         leaflet
           .marker({
-            lat: point.lat,
-            lng: point.lng,
+            lat: point.location.latitude,
+            lng: point.location.longitude,
           }, {
             icon: (point.name === selectedPoint?.name)
               ? currentCustomIcon

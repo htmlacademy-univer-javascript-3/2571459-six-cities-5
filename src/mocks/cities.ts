@@ -1,34 +1,52 @@
-import {City} from '../Types/types.ts';
+import {City} from '../Types/City.ts';
 
 export const cities: City[] = [
   {
     name: 'Amsterdam',
-    lat: 52.370228,
-    lng: 4.902137,
+    location: {
+      latitude: 52.370228,
+      longitude: 4.902137,
+      zoom: 11
+    }
   },
   {
     name: 'Brussels',
-    lat: 52.370228,
-    lng: 4.902137,
+    location: {
+      latitude: 50.8504,
+      longitude: 4.34878,
+      zoom: 11
+    }
   },
   {
     name: 'Cologne',
-    lat: 52.370228,
-    lng: 4.902137,
+    location: {
+      latitude: 50.9333,
+      longitude: 6.95,
+      zoom: 11
+    }
   },
   {
     name: 'Dusseldorf',
-    lat: 52.370228,
-    lng: 4.902137,
+    location: {
+      latitude: 51.2217,
+      longitude: 6.77616,
+      zoom: 11
+    }
   },
   {
     name: 'Hamburg',
-    lat: 52.370228,
-    lng: 4.902137,
+    location: {
+      latitude: 53.5753,
+      longitude: 10.0153,
+      zoom: 11
+    }
   },
   {
     name: 'Paris',
-    lat: 48.8534,
-    lng: 2.3488,
-  },
+    location: {
+      latitude: 48.8534,
+      longitude: 2.3488,
+      zoom: 11
+    }
+  }
 ];

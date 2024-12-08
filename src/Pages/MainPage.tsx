@@ -1,25 +1,24 @@
 import {Fragment, useState} from 'react';
-import {Point} from '../mocks/MockHelpers.ts';
 import {cities} from '../mocks/cities.ts';
-import {Offers} from '../mocks/offers.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
-import {useStore} from '../hooks/useStore.ts';
+import {useAppStoreSelector} from '../hooks/useStore.ts';
+import {City} from '../Types/City.ts';
 
 
 export function MainPage() {
-  const [selectedPoint, setSelectedPoint] = useState<Point | null>(null);
-  const handleListItemHover = (lastTitle: string) => {
-    const currentPoint = Offers.map((x) => x.point).find((cardMock) =>
-      cardMock.name === lastTitle,
-    );
-    setSelectedPoint(currentPoint || null);
-  };
-  const activeCity = useStore((state) => state.city);
-  const offers = useStore((state) => state.offers
-    .filter((offer) => offer.point.cityName === activeCity.name)
+  const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const activeCity = useAppStoreSelector((state) => state.city);
+  const offers = useAppStoreSelector((state) => state.offers
+    .filter((offer) => offer.city.name === activeCity.name)
   );
+  const handleListItemHover = (lastTitle: string) => {
+    const currentPoint = offers.map((x) => x.city).find((city) =>
+      city.name === lastTitle,
+    );
+    setSelectedCity(currentPoint || null);
+  };
 
   return (
     <Fragment>
@@ -45,13 +44,13 @@ export function MainPage() {
                 <li className="places__option" tabIndex={0}>Top rated first</li>
               </ul>
             </form>
-            <OffersList mocks={offers} onListItemHover={handleListItemHover}/>
+            <OffersList offers={offers} onListItemHover={handleListItemHover}/>
           </section>
           <div className="cities__right-section">
             <section className="map">
               <Map
-                points={offers.map((x) => x.point)}
-                selectedPoint={selectedPoint}
+                points={offers.map((x) => x.city)}
+                selectedPoint={selectedCity}
                 height={'500px'}
                 width={'500px'}
               />

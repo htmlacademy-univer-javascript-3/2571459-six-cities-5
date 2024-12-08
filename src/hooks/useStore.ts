@@ -3,4 +3,4 @@ import {store} from '../Store';
 
 
 type State = ReturnType<typeof store.getState>;
-export const useStore: TypedUseSelectorHook<State> = useSelector;
+export const useAppStoreSelector: TypedUseSelectorHook<State> = useSelector;

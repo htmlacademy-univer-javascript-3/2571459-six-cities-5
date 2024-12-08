@@ -1,8 +1,8 @@
-import {CardMock} from '../mocks/MockHelpers.ts';
 import {NeighbourhoodCard} from './NeighbourhoodCard.tsx';
+import {Offer} from '../Types/Offer.ts';
 
 type NeighbourhoodListProps = {
-  mocks: Array<CardMock>;
+  mocks: Array<Offer>;
 }
 
 export function NeighbourhoodCardList({mocks}: NeighbourhoodListProps) {
@@ -12,7 +12,7 @@ export function NeighbourhoodCardList({mocks}: NeighbourhoodListProps) {
         <div
           key={offerMock.id}
         >
-          <NeighbourhoodCard {...offerMock.props} />
+          <NeighbourhoodCard {...offerMock} />
         </div>
       ))}
     </div>);
