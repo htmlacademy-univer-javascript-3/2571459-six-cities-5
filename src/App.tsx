@@ -10,26 +10,30 @@ import {AuthorizationStatus} from './Types/AuthorizationStatus.ts';
 import {Offers} from './mocks/offers.ts';
 import {Favorites} from './mocks/favorites.ts';
 import {MainPage} from './Pages/MainPage.tsx';
+import {Provider} from 'react-redux';
+import {store} from './Store';
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Main} element={<Layout/>}>
-          <Route index element={<MainPage placesToStayCount={320} offers={Offers}/>}/>
-        </Route>
-        <Route
-          path={AppRoute.Favorites}
-          element={
-            <PrivateRoute authorisationStatus={AuthorizationStatus.Auth}>
-              <FavoritesPage favoritesMocks={Favorites}/>
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Offer} element={<OfferPage/>}/>
-        <Route path={AppRoute.Login} element={<LoginPage/>}/>
-        <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Main} element={<Layout/>}>
+            <Route index element={<MainPage placesToStayCount={320} offers={Offers}/>}/>
+          </Route>
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute authorisationStatus={AuthorizationStatus.Auth}>
+                <FavoritesPage favoritesMocks={Favorites}/>
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.Offer} element={<OfferPage/>}/>
+          <Route path={AppRoute.Login} element={<LoginPage/>}/>
+          <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
