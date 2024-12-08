@@ -1,3 +1,4 @@
 export const ApiRoute = {
-  Offers: 'offers'
+  Offers: 'offers',
+  Login: 'login'
 } as const;
