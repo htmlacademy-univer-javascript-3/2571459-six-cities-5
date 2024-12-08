@@ -3,6 +3,7 @@ import {City} from '../Types/types.ts';
 
 export type Point = {
   name: string;
+  cityName: string;
   lat: number;
   lng: number;
 }
@@ -35,10 +36,10 @@ export function CreateCardMock(
       priceValue: priceValue,
       premium: premium,
       inBookmarks: inBookmarks,
-      city: city
     },
     point: {
       name: name,
+      cityName: city.name,
       lat: lat,
       lng: lng,
     }

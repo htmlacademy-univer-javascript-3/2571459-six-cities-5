@@ -18,7 +18,7 @@ export function MainPage() {
   };
   const activeCity = useStore((state) => state.city);
   const offers = useStore((state) => state.offers
-    .filter((offer) => offer.props.city.name === activeCity.name)
+    .filter((offer) => offer.point.cityName === activeCity.name)
   );
 
   return (
