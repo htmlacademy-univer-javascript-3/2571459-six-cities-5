@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../Types/AppRoute.ts';
+import {AppRoute} from '../constants/AppRoute.ts';
 
 export type CardProps = {
   placeCardType: 'Room' | 'Apartment';
