@@ -4,13 +4,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const.ts';
 import {Point} from '../mocks/MockHelpers.ts';
-
-
-type City = {
-  lat: number;
-  lng: number;
-  zoom: number;
-}
+import {City} from '../Types/types.ts';
 
 
 type MapProps = {
