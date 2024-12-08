@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import {useMap} from '../hooks/useMap.ts';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {useStore} from '../hooks/useStore.ts';
+import {useAppStore} from '../hooks/useStore.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants/constants.ts';
 import {City} from '../Types/City.ts';
 
@@ -16,7 +16,7 @@ type MapProps = {
 
 export function Map({points, selectedPoint, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const activeCity = useStore((state) => state.city);
+  const activeCity = useAppStore((state) => state.city);
   const map = useMap(mapRef, {lat: activeCity.location.latitude, lng: activeCity.location.longitude, zoom: 11});
 
   const defaultCustomIcon = leaflet.icon({

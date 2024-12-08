@@ -3,19 +3,19 @@ import {cities} from '../mocks/cities.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
-import {useStore} from '../hooks/useStore.ts';
+import {useAppStore} from '../hooks/useStore.ts';
 import {City} from '../Types/City.ts';
 
 
 export function MainPage() {
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
-  const activeCity = useStore((state) => state.city);
-  const offers = useStore((state) => state.offers
+  const activeCity = useAppStore((state) => state.city);
+  const offers = useAppStore((state) => state.offers
     .filter((offer) => offer.city.name === activeCity.name)
   );
   const handleListItemHover = (lastTitle: string) => {
-    const currentPoint = offers.map((x) => x.city).find((cardMock) =>
-      cardMock.name === lastTitle,
+    const currentPoint = offers.map((x) => x.city).find((city) =>
+      city.name === lastTitle,
     );
     setSelectedCity(currentPoint || null);
   };

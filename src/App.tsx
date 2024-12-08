@@ -11,8 +11,18 @@ import {Provider} from 'react-redux';
 import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
 import {AuthorizationStatus} from './constants/AuthorizationStatus.ts';
+import {fetchOffersAction} from './api/ApiClient.ts';
+import {useAppStore} from './hooks/useStore.ts';
+import {Spinner} from './Components/Spinner.tsx';
 
+
+store.dispatch(fetchOffersAction());
 export function App() {
+  // const isLoading = useAppStore((state) => state.loading);
+  // if (isLoading){
+  //   return(<Spinner />);
+  // }
+
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -28,7 +38,7 @@ export function App() {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Offer} element={<OfferPage/>}/>
+          <Route path={AppRoute.Offer} element={<OfferPage nearbyOffers={[]}/>}/>
           <Route path={AppRoute.Login} element={<LoginPage/>}/>
           <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
         </Routes>
