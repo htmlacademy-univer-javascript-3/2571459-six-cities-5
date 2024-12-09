@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../constants/AppRoute.ts';
+import {memo} from 'react';
 
 export type CardProps = {
   type: 'Room' | 'Apartment';
@@ -15,7 +16,7 @@ type CardBaseProps = CardProps & {
   cardType: 'cities' | 'near-places';
 }
 
-export function CardBase({type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
+export function CardBaseNoMemo({type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
   const starsWidth = `${rating * 20}%`;
   const bookmarkClass = `place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`;
   const articleClass = `${cardType}__card place-card`;
@@ -59,3 +60,5 @@ export function CardBase({type, isPremium, price, title, previewImage, rating, i
       </div>
     </article>);
 }
+
+export const CardBase = memo(CardBaseNoMemo);
