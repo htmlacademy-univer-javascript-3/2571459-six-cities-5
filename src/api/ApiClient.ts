@@ -4,8 +4,9 @@ import {ApiRoute} from '../Types/ApiRoutes.ts';
 import {setAuthorizationStatus, setLogin, setOffers, setOffersLoading} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {store} from "../Store";
-import {BookmarkRequest} from "../constants/BookmarkRequest.ts";
+import {store} from '../Store';
+import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
+import {saveToken} from './Api.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -46,6 +47,7 @@ export const login = createAsyncThunk<void, LoginData, {
       if (data.token && data.token !== '') {
         dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
         dispatch(setLogin(data.email));
+        saveToken(data.token);
       }
     } catch (e) { /* empty */ }
   },

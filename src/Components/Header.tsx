@@ -4,11 +4,13 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../constants/AppRoute.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
+import {dropToken} from '../api/Api.ts';
 
 function AuthorizedHeaderNav() {
   const dispatch = useDispatch();
   const signOut = () => {
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+    dropToken();
   };
   const login = useAppStoreSelector((state) => state.login);
   return (

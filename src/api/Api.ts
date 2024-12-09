@@ -6,7 +6,7 @@ import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
 const getToken = (): string => {
   const token = localStorage.getItem(TokenKey);
-  return token ?? 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=';
+  return token ?? '';
 };
 
 export const saveToken = (token: string): void => {
@@ -31,6 +31,9 @@ api.interceptors.response.use(
     }
     return Promise.reject(error);
   },
+);
+
+api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getToken();
 
@@ -39,5 +42,5 @@ api.interceptors.response.use(
     }
 
     return config;
-  }
-);
+  });
+
