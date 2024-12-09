@@ -9,12 +9,12 @@ import {Favorites} from './mocks/favorites.ts';
 import {MainPage} from './Pages/MainPage.tsx';
 import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
-import {fetchOffersAction} from './api/ApiClient.ts';
+import {findOffers} from './api/ApiClient.ts';
 import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';
 
 
-store.dispatch(fetchOffersAction());
+store.dispatch(findOffers());
 
 export function App() {
   const isLoading = useAppStoreSelector((state) => state.loading);
@@ -36,7 +36,7 @@ export function App() {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Offer} element={<OfferPage nearbyOffers={[]}/>}/>
+        <Route path={AppRoute.Offer} element={<OfferPage/>}/>
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
         <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
       </Routes>

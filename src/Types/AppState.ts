@@ -5,6 +5,7 @@ import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 export type AppState = {
   city: City;
   offers: Offer[];
+  nearbyOffers: Offer[];
   loading: boolean;
   authorizationStatus: AuthorizationStatus;
   login: string;

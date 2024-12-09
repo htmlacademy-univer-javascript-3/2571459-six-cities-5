@@ -3,9 +3,12 @@ import {login} from '../api/ApiClient.ts';
 import {store} from '../Store';
 import {AppRoute} from '../constants/AppRoute.ts';
 import React from 'react';
+import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const authStatus = useAppStoreSelector((state) => state.authorizationStatus);
   const authorizeAction = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -14,7 +17,9 @@ export function LoginPage() {
     store.dispatch(
       login({email, password})
     ).then(() => {
-      navigate(AppRoute.Main);
+      if (authStatus === AuthorizationStatus.Auth) {
+        navigate(AppRoute.Main);
+      }
     });
   };
   return (
