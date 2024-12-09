@@ -5,6 +5,7 @@ import {PlacesSortOptions} from '../Components/SortVariants.tsx';
 
 export type AppState = {
   city: City;
+  hoveredOffer: Offer | null;
   offers: Offer[];
   favorites: Offer[];
   nearbyOffers: Offer[];

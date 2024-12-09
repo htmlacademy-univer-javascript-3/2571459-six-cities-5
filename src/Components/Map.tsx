@@ -4,17 +4,17 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants/constants.ts';
-import {City} from '../Types/City.ts';
+import {Offer} from '../Types/Offer.ts';
 
 
 type MapProps = {
-  points: City[];
-  selectedPoint: City | null;
+  offers: Offer[];
+  selectedOffer: Offer | null;
   width: string;
   height: string;
 }
 
-export function Map({points, selectedPoint, width, height}: MapProps){
+export function Map({offers, selectedOffer, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
   const activeCity = useAppStoreSelector((state) => state.city);
   const map = useMap(mapRef, {lat: activeCity.location.latitude, lng: activeCity.location.longitude, zoom: 11});
@@ -33,22 +33,22 @@ export function Map({points, selectedPoint, width, height}: MapProps){
 
   useEffect(() => {
     if (map) {
-      map.setView([activeCity.location.latitude, activeCity.location.longitude], 11);
+      map.setView([activeCity.location.latitude, activeCity.location.longitude], 12);
 
-      points.forEach((point) => {
+      offers.forEach((offer) => {
         leaflet
           .marker({
-            lat: point.location.latitude,
-            lng: point.location.longitude,
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
           }, {
-            icon: (point.name === selectedPoint?.name)
+            icon: (offer.title === selectedOffer?.title)
               ? currentCustomIcon
               : defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  }, [currentCustomIcon, defaultCustomIcon, map, points, selectedPoint, activeCity]);
+  }, [currentCustomIcon, defaultCustomIcon, map, offers, selectedOffer, activeCity]);
 
   return (
     <div

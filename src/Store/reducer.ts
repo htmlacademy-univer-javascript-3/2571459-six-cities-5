@@ -3,7 +3,7 @@ import {cities} from '../mocks/cities.ts';
 import {
   setAuthorizationStatus,
   setCity,
-  setFavorites,
+  setFavorites, setHoveredOffer,
   setLogin,
   setNearbyOffers,
   setOffers,
@@ -17,6 +17,7 @@ import {PlacesSortOptions} from '../Components/SortVariants.tsx';
 const initialState: AppState = {
   city: cities[5],
   offers: [],
+  hoveredOffer: null,
   nearbyOffers: [],
   favorites: [],
   placesSortOptions: PlacesSortOptions.Default,
@@ -32,6 +33,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(setHoveredOffer, (state, action) => {
+      state.hoveredOffer = action.payload;
     })
     .addCase(setNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;

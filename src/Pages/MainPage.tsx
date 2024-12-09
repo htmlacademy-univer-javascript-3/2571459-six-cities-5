@@ -1,16 +1,17 @@
-import {Fragment, useState} from 'react';
+import {Fragment} from 'react';
 import {cities} from '../mocks/cities.ts';
 import {OffersList} from '../Components/OffersList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
-import {City} from '../Types/City.ts';
 import {MainEmptyPage} from './MainEmptyPage.tsx';
 import {GetPlacesComparer, SortVariants} from '../Components/SortVariants.tsx';
+import {store} from '../Store';
+import {setHoveredOffer} from '../Store/actions.ts';
 
 
 export function MainPage() {
-  const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const hoveredOffer = useAppStoreSelector((state) => state.hoveredOffer);
   const activeCity = useAppStoreSelector((state) => state.city);
   const currentPlacesSortOption = useAppStoreSelector((state) => state.placesSortOptions);
   const offers = useAppStoreSelector((state) => state.offers
@@ -21,10 +22,10 @@ export function MainPage() {
     return <MainEmptyPage/>;
   }
   const handleListItemHover = (lastTitle: string) => {
-    const currentPoint = offers.map((x) => x.city).find((city) =>
-      city.name === lastTitle,
+    const currentPoint = offers.find((offer) =>
+      offer.title === lastTitle,
     );
-    setSelectedCity(currentPoint || null);
+    store.dispatch(setHoveredOffer(currentPoint || null));
   };
 
   return (
@@ -42,8 +43,8 @@ export function MainPage() {
           <div className="cities__right-section">
             <section className="map">
               <Map
-                points={offers.map((x) => x.city)}
-                selectedPoint={selectedCity}
+                offers={offers}
+                selectedOffer={hoveredOffer}
                 height={'500px'}
                 width={'500px'}
               />
