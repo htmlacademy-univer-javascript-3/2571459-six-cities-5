@@ -68,15 +68,3 @@ export const updateBookmark = createAsyncThunk<void, updateBookmarkRequest, {
     store.dispatch(fetchOffersAction());
   },
 );
-
-export const checkAuth = createAsyncThunk<void, undefined, {
-  dispatch: Dispatch;
-  extra: AxiosInstance;
-}>(
-  'checkAuth',
-  async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<LoginResponse>(ApiRoute.Login);
-    dispatch(setLogin(data.email));
-    dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-  },
-);
