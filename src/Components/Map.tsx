@@ -9,15 +9,15 @@ import {Offer} from '../Types/Offer.ts';
 
 type MapProps = {
   offers: Offer[];
-  selectedOffer: Offer | null;
   width: string;
   height: string;
 }
 
-export function Map({offers, selectedOffer, width, height}: MapProps){
+export function Map({offers, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const activeCity = useAppStoreSelector((state) => state.city);
-  const map = useMap(mapRef, {lat: activeCity.location.latitude, lng: activeCity.location.longitude, zoom: 11});
+  const hoveredOffer = useAppStoreSelector((state) => state.hoveredOffer);
+  const selectedCity = useAppStoreSelector((state) => state.selectedCity);
+  const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 11});
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -33,7 +33,7 @@ export function Map({offers, selectedOffer, width, height}: MapProps){
 
   useEffect(() => {
     if (map) {
-      map.setView([activeCity.location.latitude, activeCity.location.longitude], 12);
+      map.setView([selectedCity.location.latitude, selectedCity.location.longitude], 12);
 
       offers.forEach((offer) => {
         leaflet
@@ -41,14 +41,14 @@ export function Map({offers, selectedOffer, width, height}: MapProps){
             lat: offer.location.latitude,
             lng: offer.location.longitude,
           }, {
-            icon: (offer.title === selectedOffer?.title)
+            icon: (offer.title === hoveredOffer?.title)
               ? currentCustomIcon
               : defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  }, [currentCustomIcon, defaultCustomIcon, map, offers, selectedOffer, activeCity]);
+  }, [currentCustomIcon, defaultCustomIcon, map, offers, hoveredOffer, selectedCity]);
 
   return (
     <div

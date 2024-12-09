@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities.ts';
 import {
   setAuthorizationStatus,
-  setCity,
+  setSelectedCity,
   setFavorites, setHoveredOffer,
   setLogin,
   setNearbyOffers,
@@ -15,7 +15,7 @@ import {PlacesSortOptions} from '../Components/SortVariants.tsx';
 
 
 const initialState: AppState = {
-  city: cities[5],
+  selectedCity: cities[5],
   offers: [],
   hoveredOffer: null,
   nearbyOffers: [],
@@ -28,8 +28,8 @@ const initialState: AppState = {
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setCity, (state, action) => {
-      state.city = action.payload;
+    .addCase(setSelectedCity, (state, action) => {
+      state.selectedCity = action.payload;
     })
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload;

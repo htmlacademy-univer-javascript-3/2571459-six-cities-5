@@ -4,7 +4,7 @@ import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {PlacesSortOptions} from '../Components/SortVariants.tsx';
 
 export type AppState = {
-  city: City;
+  selectedCity: City;
   hoveredOffer: Offer | null;
   offers: Offer[];
   favorites: Offer[];

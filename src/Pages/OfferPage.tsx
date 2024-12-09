@@ -184,7 +184,6 @@ export function OfferPage() {
           >
             <Map
               offers={nearbyOffers}
-              selectedOffer={nearbyOffers[0]}
               height={'600px'}
               width={'1100px'}
             />

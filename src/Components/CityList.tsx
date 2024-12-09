@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux';
-import {setCity} from '../Store/actions.ts';
+import {setSelectedCity} from '../Store/actions.ts';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {City} from '../Types/City.ts';
 
@@ -8,11 +8,11 @@ type CityListProps = {
 }
 
 export function CityList({cities}: CityListProps) {
-  const currentCity = useAppStoreSelector((state) => state.city);
+  const currentCity = useAppStoreSelector((state) => state.selectedCity);
   const dispatch = useDispatch();
 
   function onCityClick(city: City) {
-    dispatch(setCity(city));
+    dispatch(setSelectedCity(city));
   }
 
   return (
