@@ -33,9 +33,9 @@ export function CardBaseNoMemo({id, type, isPremium, price, title, previewImage,
         </div>}
 
       <div className={imageWrapperClass}>
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

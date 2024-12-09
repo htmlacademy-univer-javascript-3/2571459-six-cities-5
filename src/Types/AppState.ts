@@ -1,7 +1,9 @@
 import {City} from './City.ts';
 import {Offer} from './Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {PlacesSortOptions} from '../Components/SortVariants.tsx';
+import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
+import {DetailedOffer} from './DetailedOffer.ts';
+import {Comment} from './Comment.ts';
 
 export type AppState = {
   selectedCity: City;
@@ -13,4 +15,6 @@ export type AppState = {
   loading: boolean;
   authorizationStatus: AuthorizationStatus;
   login: string;
+  currentDetailedOffer: DetailedOffer | null;
+  offerComments: Comment[];
 }

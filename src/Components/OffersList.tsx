@@ -16,7 +16,7 @@ export function OffersList({offers}: OffersListProps) {
           onMouseEnter={() => store.dispatch(setHoveredOffer(offer))}
           onMouseLeave={() => store.dispatch(setHoveredOffer(null))}
         >
-          <CityCard {...offer} />
+          <CityCard {...offer}/>
         </div>
       ))}
     </div>);

@@ -3,13 +3,7 @@ import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {store} from '../Store';
 import {setPlacesSortOptions} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
-
-export enum PlacesSortOptions {
-  Default = 'Popular',
-  PriceLowToHigh = 'Price: low to high',
-  PriceHighToLow = 'Price: high to low',
-  TopRatedFirst = 'Top rated first',
-}
+import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
 
 export function GetPlacesComparer(currentOption: PlacesSortOptions) {
   switch (currentOption) {

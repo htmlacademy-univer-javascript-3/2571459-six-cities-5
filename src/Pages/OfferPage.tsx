@@ -1,88 +1,57 @@
 import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
 import {ReviewList} from '../Components/ReviewList.tsx';
-import {ReviewMocks} from '../mocks/reviews.ts';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
 import {store} from '../Store';
-import {findNearbyOffers} from '../api/ApiClient.ts';
+import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {useParams} from 'react-router-dom';
-
+import {Header} from '../Components/Header.tsx';
+import {NotFoundPage} from './NotFoundPage.tsx';
+import {OfferGallery} from '../Components/OfferGallery.tsx';
+import {OfferGoods} from '../Components/OfferGoods.tsx';
+import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 
 export function OfferPage() {
-  const {offerId} = useParams();
+  const {id} = useParams();
+  const offerId = id || '-';
   useEffect(() => {
-    store.dispatch(findNearbyOffers(offerId || ''));
+    store.dispatch(getOffer(offerId));
+    store.dispatch(findNearbyOffers(offerId));
+    store.dispatch(getComments(offerId));
   }, [offerId]);
 
+  const offer = useAppStoreSelector((state) => state.currentDetailedOffer);
   const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
+  const comments = useAppStoreSelector((state) => state.offerComments);
+  if (offer === null) {
+    return <NotFoundPage/>;
+  }
+  const starsWidth = `${offer.rating * 20}%`;
+  const bookmarkClass = `place-card__bookmark-button ${offer.isFavorite && 'place-card__bookmark-button--active'} button`;
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <Header/>
       <main className="page__main page__main--offer">
         <section className="offer">
-          <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-            </div>
-          </div>
+          <OfferGallery imageUrls={offer.images}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {offer.isPremium &&
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                Beautiful &amp; luxurious studio at great location
+                  {offer.title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
+                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+                <button className={bookmarkClass} type="button" onClick={ async () => await store.dispatch(offer.isFavorite
+                  ? updateBookmark({id: offer.id, action: BookmarkRequest.Remove})
+                  : updateBookmark({id: offer.id, action: BookmarkRequest.Add}))}
+                >
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -91,87 +60,51 @@ export function OfferPage() {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={{width: starsWidth}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                Apartment
+                  {offer.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                3 Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                Max 4 adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;120</b>
+                <b className="offer__price-value">&euro;{offer.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
-              <div className="offer__inside">
-                <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  <li className="offer__inside-item">
-                  Wi-Fi
-                  </li>
-                  <li className="offer__inside-item">
-                  Washing machine
-                  </li>
-                  <li className="offer__inside-item">
-                  Towels
-                  </li>
-                  <li className="offer__inside-item">
-                  Heating
-                  </li>
-                  <li className="offer__inside-item">
-                  Coffee machine
-                  </li>
-                  <li className="offer__inside-item">
-                  Baby seat
-                  </li>
-                  <li className="offer__inside-item">
-                  Kitchen
-                  </li>
-                  <li className="offer__inside-item">
-                  Dishwasher
-                  </li>
-                  <li className="offer__inside-item">
-                  Cabel TV
-                  </li>
-                  <li className="offer__inside-item">
-                  Fridge
-                  </li>
-                </ul>
-              </div>
+              <OfferGoods goods={offer.goods}/>
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
                   <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="offer__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
+                    <img className="offer__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="offer__user-name">
-                    Angelina
+                    {offer.host.name}
                   </span>
-                  <span className="offer__user-status">
+                  {
+                    offer.host.isPro &&
+                    <span className="offer__user-status">
                     Pro
-                  </span>
+                    </span>
+                  }
                 </div>
                 <div className="offer__description">
-                  <p className="offer__text">
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <p className="offer__text">
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                  </p>
+                  {offer.description}
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ReviewMocks.length}</span></h2>
-                <ReviewList mocks={ReviewMocks}/>
-                <CommentSendingForm/>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+                <ReviewList comments={comments}/>
+                <CommentSendingForm offerId={offer.id}/>
               </section>
             </div>
           </div>
