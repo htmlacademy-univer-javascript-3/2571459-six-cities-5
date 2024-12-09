@@ -1,7 +1,11 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../constants/AppRoute.ts';
+import {store} from '../Store';
+import {updateBookmark} from '../api/ApiClient.ts';
+import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 
 export type CardProps = {
+  id: string;
   type: 'Room' | 'Apartment';
   isPremium?: boolean;
   isFavorite?: boolean;
@@ -15,7 +19,7 @@ type CardBaseProps = CardProps & {
   cardType: 'cities' | 'near-places';
 }
 
-export function CardBase({type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
+export function CardBase({id, type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
   const starsWidth = `${rating * 20}%`;
   const bookmarkClass = `place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`;
   const articleClass = `${cardType}__card place-card`;
@@ -38,7 +42,11 @@ export function CardBase({type, isPremium, price, title, previewImage, rating, i
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={bookmarkClass} type="button">
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+          <button className={bookmarkClass} type="button" onClick={ async () => await store.dispatch(isFavorite
+            ? updateBookmark({id: id, action: BookmarkRequest.Remove})
+            : updateBookmark({id: id, action: BookmarkRequest.Add}))}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

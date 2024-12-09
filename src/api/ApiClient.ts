@@ -4,6 +4,8 @@ import {ApiRoute} from '../Types/ApiRoutes.ts';
 import {setAuthorizationStatus, setLogin, setOffers, setOffersLoading} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
+import {store} from "../Store";
+import {BookmarkRequest} from "../constants/BookmarkRequest.ts";
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -46,6 +48,22 @@ export const login = createAsyncThunk<void, LoginData, {
         dispatch(setLogin(data.email));
       }
     } catch (e) { /* empty */ }
+  },
+);
+
+type updateBookmarkRequest = {
+  id: string;
+  action: BookmarkRequest;
+}
+
+export const updateBookmark = createAsyncThunk<void, updateBookmarkRequest, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'updateOfferBookmark',
+  async (request, {extra: api}) => {
+    await api.post(`${ApiRoute.Favorites}/${request.id}/${request.action}`);
+    store.dispatch(fetchOffersAction());
   },
 );
 
