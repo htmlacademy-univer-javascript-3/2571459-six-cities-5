@@ -6,6 +6,7 @@ export type AppState = {
   city: City;
   offers: Offer[];
   favorites: Offer[];
+  nearbyOffers: Offer[];
   loading: boolean;
   authorizationStatus: AuthorizationStatus;
   login: string;

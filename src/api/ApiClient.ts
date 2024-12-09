@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
 import {ApiRoute} from '../Types/ApiRoutes.ts';
-import {setAuthorizationStatus, setFavorites, setLogin, setOffers, setOffersLoading} from '../Store/actions.ts';
+import {setAuthorizationStatus, setFavorites, setLogin, setNearbyOffers, setOffers, setOffersLoading} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {store} from '../Store';
@@ -9,11 +9,11 @@ import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 import {getToken, saveToken} from './Api.ts';
 
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const findOffers = createAsyncThunk<void, undefined, {
   dispatch: Dispatch;
   extra: AxiosInstance;
 }>(
-  'offers/fetch',
+  'offers/find',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setOffersLoading(true));
     const {data} = await api.get<Offer[]>(ApiRoute.Offers);
@@ -78,7 +78,18 @@ export const updateBookmark = createAsyncThunk<void, updateBookmarkRequest, {
   'updateOfferBookmark',
   async (request, {extra: api}) => {
     await api.post(`${ApiRoute.Favorites}/${request.id}/${request.action}`);
-    store.dispatch(fetchOffersAction());
+    store.dispatch(findOffers());
     store.dispatch(getFavorites());
+  },
+);
+
+export const findNearbyOffers = createAsyncThunk<void, string, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'offers/fetchNearby',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offer[]>(`${ApiRoute.Offers}/${id}/nearby`);
+    dispatch(setNearbyOffers(data));
   },
 );

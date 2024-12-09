@@ -3,6 +3,7 @@ import {AppRoute} from '../constants/AppRoute.ts';
 import {store} from '../Store';
 import {updateBookmark} from '../api/ApiClient.ts';
 import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
+import {memo} from 'react';
 
 export type CardProps = {
   id: string;
@@ -19,7 +20,7 @@ type CardBaseProps = CardProps & {
   cardType: 'cities' | 'near-places';
 }
 
-export function CardBase({id, type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
+export function CardBaseNoMemo({id, type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
   const starsWidth = `${rating * 20}%`;
   const bookmarkClass = `place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`;
   const articleClass = `${cardType}__card place-card`;
@@ -67,3 +68,5 @@ export function CardBase({id, type, isPremium, price, title, previewImage, ratin
       </div>
     </article>);
 }
+
+export const CardBase = memo(CardBaseNoMemo);

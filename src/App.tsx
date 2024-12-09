@@ -8,12 +8,12 @@ import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
 import {MainPage} from './Pages/MainPage.tsx';
 import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
-import {fetchOffersAction, getFavorites} from './api/ApiClient.ts';
+import {findOffers, getFavorites} from './api/ApiClient.ts';
 import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';
 
 
-store.dispatch(fetchOffersAction());
+store.dispatch(findOffers());
 store.dispatch(getFavorites());
 
 export function App() {
@@ -36,7 +36,7 @@ export function App() {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Offer} element={<OfferPage nearbyOffers={[]}/>}/>
+        <Route path={AppRoute.Offer} element={<OfferPage/>}/>
         <Route path={AppRoute.Login} element={<LoginPage/>}/>
         <Route path={AppRoute.NotFound} element={<NotFoundPage/>}/>
       </Routes>
