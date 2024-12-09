@@ -17,15 +17,15 @@ export function Map({offers, width, height}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
   const hoveredOffer = useAppStoreSelector((state) => state.hoveredOffer);
   const selectedCity = useAppStoreSelector((state) => state.selectedCity);
-  const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 11});
+  const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 12});
 
-  const defaultCustomIcon = leaflet.icon({
+  const defaultIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
 
-  const currentCustomIcon = leaflet.icon({
+  const selectedIcon = leaflet.icon({
     iconUrl: URL_MARKER_CURRENT,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
@@ -41,14 +41,14 @@ export function Map({offers, width, height}: MapProps){
             lat: offer.location.latitude,
             lng: offer.location.longitude,
           }, {
-            icon: (offer.title === hoveredOffer?.title)
-              ? currentCustomIcon
-              : defaultCustomIcon,
+            icon: (offer.id === hoveredOffer?.id)
+              ? selectedIcon
+              : defaultIcon,
           })
           .addTo(map);
       });
     }
-  }, [currentCustomIcon, defaultCustomIcon, map, offers, hoveredOffer, selectedCity]);
+  }, [selectedIcon, defaultIcon, map, offers, hoveredOffer, selectedCity]);
 
   return (
     <div
