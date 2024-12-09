@@ -5,6 +5,7 @@ import {
   setCity,
   setLogin,
   setNearbyOffers,
+  setFavorites,
   setOffers,
   setOffersLoading
 } from './actions.ts';
@@ -16,6 +17,7 @@ const initialState: AppState = {
   city: cities[5],
   offers: [],
   nearbyOffers: [],
+  favorites: [],
   loading: true,
   authorizationStatus: AuthorizationStatus.NoAuth,
   login: ''
@@ -31,6 +33,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;
+    })
+    .addCase(setFavorites, (state, action) => {
+      state.favorites = action.payload;
     })
     .addCase(setOffersLoading, (state, action) => {
       state.loading = action.payload;

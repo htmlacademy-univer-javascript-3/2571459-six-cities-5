@@ -1,8 +1,9 @@
 import {CardBase, CardProps} from './CardBase.tsx';
 
-export function NeighbourhoodCard({type, isPremium, price, title, previewImage, rating, isFavorite}: CardProps) {
+export function NeighbourhoodCard({id, type, isPremium, price, title, previewImage, rating, isFavorite}: CardProps) {
   return (
     <CardBase
+      id={id}
       type={type}
       price={price}
       title={title}

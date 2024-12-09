@@ -5,6 +5,7 @@ import {Map} from '../Components/Map.tsx';
 import {CityList} from '../Components/CityList.tsx';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {City} from '../Types/City.ts';
+import {MainEmptyPage} from './MainEmptyPage.tsx';
 
 
 export function MainPage() {
@@ -13,6 +14,9 @@ export function MainPage() {
   const offers = useAppStoreSelector((state) => state.offers
     .filter((offer) => offer.city.name === activeCity.name)
   );
+  if (offers.length === 0) {
+    return <MainEmptyPage/>;
+  }
   const handleListItemHover = (lastTitle: string) => {
     const currentPoint = offers.map((x) => x.city).find((city) =>
       city.name === lastTitle,

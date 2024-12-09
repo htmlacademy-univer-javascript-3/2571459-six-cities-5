@@ -4,13 +4,16 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../constants/AppRoute.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
+import {dropToken} from '../api/Api.ts';
 
 function AuthorizedHeaderNav() {
   const dispatch = useDispatch();
   const signOut = () => {
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+    dropToken();
   };
   const login = useAppStoreSelector((state) => state.login);
+  const favoritesLength = useAppStoreSelector((state) => state.favorites.length);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -19,7 +22,7 @@ function AuthorizedHeaderNav() {
             <div className="header__avatar-wrapper user__avatar-wrapper">
             </div>
             <span className="header__user-name user__name">{login}</span>
-            <span className="header__favorite-count">3</span>
+            <span className="header__favorite-count">{favoritesLength}</span>
           </Link>
         </li>
         <li className="header__nav-item">

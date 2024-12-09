@@ -5,16 +5,16 @@ import {FavoritesPage} from './Pages/FavoritesPage.tsx';
 import {OfferPage} from './Pages/OfferPage.tsx';
 import {LoginPage} from './Pages/LoginPage.tsx';
 import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
-import {Favorites} from './mocks/favorites.ts';
 import {MainPage} from './Pages/MainPage.tsx';
 import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
-import {findOffers} from './api/ApiClient.ts';
+import {findOffers, getFavorites} from './api/ApiClient.ts';
 import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';
 
 
 store.dispatch(findOffers());
+store.dispatch(getFavorites());
 
 export function App() {
   const isLoading = useAppStoreSelector((state) => state.loading);
@@ -32,7 +32,7 @@ export function App() {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesPage favoritesMocks={Favorites}/>
+              <FavoritesPage/>
             </PrivateRoute>
           }
         />
