@@ -1,9 +1,21 @@
-import axios, {AxiosError} from 'axios';
-import {API_URL} from '../constants/constants.ts';
+import axios, {AxiosError, InternalAxiosRequestConfig} from 'axios';
+import {API_URL, TokenKey} from '../constants/constants.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
+const getToken = (): string => {
+  const token = localStorage.getItem(TokenKey);
+  return token ?? 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=';
+};
+
+export const saveToken = (token: string): void => {
+  localStorage.setItem(TokenKey, token);
+};
+
+export const dropToken = (): void => {
+  localStorage.removeItem(TokenKey);
+};
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -18,5 +30,14 @@ api.interceptors.response.use(
       dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     }
     return Promise.reject(error);
+  },
+  (config: InternalAxiosRequestConfig) => {
+    const token = getToken();
+
+    if (token && config.headers) {
+      config.headers['X-Token'] = token;
+    }
+
+    return config;
   }
 );
