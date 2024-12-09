@@ -4,10 +4,7 @@ import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
-const getToken = (): string => {
-  const token = localStorage.getItem(TokenKey);
-  return token ?? '';
-};
+export const getToken = (): string => localStorage.getItem(TokenKey) ?? '';
 
 export const saveToken = (token: string): void => {
   localStorage.setItem(TokenKey, token);

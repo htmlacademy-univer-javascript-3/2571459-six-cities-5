@@ -1,6 +1,6 @@
-
-import {CityFavoritesCardsMock, CityFavoritesMock} from '../mocks/favorites.ts';
 import {CardProps} from '../Components/CardBase.tsx';
+import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {Offer} from '../Types/Offer.ts';
 
 
 function FavoritesCard({type, isPremium, price, title, previewImage, rating}: CardProps) {
@@ -43,44 +43,41 @@ function FavoritesCard({type, isPremium, price, title, previewImage, rating}: Ca
     </article>);
 }
 
-function CityFavoritesList({cityName, cardsProps}: CityFavoritesCardsMock) {
+function CityFavoritesList(cards: Offer[]) {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
           <a className="locations__item-link" href="#">
-            <span>{cityName}</span>
+            <span>{cards[0]?.city.name}</span>
           </a>
         </div>
       </div>
       <div className="favorites__places">
-        {cardsProps.map((favoriteCardMock) => (
-          <FavoritesCard key={favoriteCardMock.id} {...favoriteCardMock.props} />
-        ))}
+        {/*{cards.map((card) => (*/}
+          <FavoritesCard key={cards[0].id} {...cards[0]} />
+        {/*))}*/}
       </div>
     </li>
   );
 }
 
 type FavoritesListProps = {
-  mocks: CityFavoritesMock[];
+  favorites: Offer[];
 }
 
-function FavoritesList({mocks}: FavoritesListProps) {
+function FavoritesList({favorites}: FavoritesListProps) {
   return (
     <ul className="favorites__list">
-      {mocks.map((cityFavoritesMock) => (
-        <CityFavoritesList key={cityFavoritesMock.key} {...cityFavoritesMock.cityFavoritesCardsMock}/>
+      {favorites.map((cityFavoritesMock) => (
+        <CityFavoritesList key={cityFavoritesMock.id} {...favorites}/>
       ))}
     </ul>
   );
 }
 
-type FavoritesPageProps = {
-  favoritesMocks: CityFavoritesMock[];
-}
-
-export function FavoritesPage({favoritesMocks}: FavoritesPageProps) {
+export function FavoritesPage() {
+  const favorites = useAppStoreSelector((state) => state.favorites);
   return (
     <div className="page">
       <header className="header">
@@ -116,7 +113,7 @@ export function FavoritesPage({favoritesMocks}: FavoritesPageProps) {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesList mocks={favoritesMocks}/>
+            <FavoritesList favorites={favorites}/>
           </section>
         </div>
       </main>

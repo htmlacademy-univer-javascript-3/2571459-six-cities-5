@@ -1,12 +1,12 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
 import {ApiRoute} from '../Types/ApiRoutes.ts';
-import {setAuthorizationStatus, setLogin, setOffers, setOffersLoading} from '../Store/actions.ts';
+import {setAuthorizationStatus, setFavorites, setLogin, setOffers, setOffersLoading} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {store} from '../Store';
 import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
-import {saveToken} from './Api.ts';
+import {getToken, saveToken} from './Api.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -50,6 +50,19 @@ export const login = createAsyncThunk<void, LoginData, {
         saveToken(data.token);
       }
     } catch (e) { /* empty */ }
+  },
+);
+
+export const getFavorites = createAsyncThunk<void, undefined, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'getFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    if (getToken() !== '') {
+      const {data} = await api.get<Offer[]>(ApiRoute.Favorites);
+      dispatch(setFavorites(data));
+    }
   },
 );
 
