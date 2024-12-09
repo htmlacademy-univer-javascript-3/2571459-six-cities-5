@@ -3,6 +3,7 @@ import {City} from '../Types/City.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {PlacesSortOptions} from '../Components/SortVariants.tsx';
+import {DetailedOffer} from "../Types/DetailedOffer.ts";
 
 export const setOffers = createAction<Offer[]>('setOffers');
 export const setHoveredOffer = createAction<Offer | null>('setHoveredOffer');
@@ -13,3 +14,4 @@ export const setAuthorizationStatus = createAction<AuthorizationStatus>('authSta
 export const setLogin = createAction<string>('login');
 export const setNearbyOffers = createAction<Offer[]>('setNearbyOffers');
 export const setPlacesSortOptions = createAction<PlacesSortOptions>('setPlacesSortOptions');
+export const setDetailedOffer = createAction<DetailedOffer>('setDetailedOffer');

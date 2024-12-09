@@ -1,12 +1,21 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
 import {ApiRoute} from '../Types/ApiRoutes.ts';
-import {setAuthorizationStatus, setFavorites, setLogin, setNearbyOffers, setOffers, setOffersLoading} from '../Store/actions.ts';
+import {
+  setAuthorizationStatus,
+  setDetailedOffer,
+  setFavorites,
+  setLogin,
+  setNearbyOffers,
+  setOffers,
+  setOffersLoading
+} from '../Store/actions.ts';
 import {Offer} from '../Types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {store} from '../Store';
 import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 import {getToken, saveToken} from './Api.ts';
+import {DetailedOffer} from "../Types/DetailedOffer.ts";
 
 
 export const findOffers = createAsyncThunk<void, undefined, {
@@ -87,9 +96,21 @@ export const findNearbyOffers = createAsyncThunk<void, string, {
   dispatch: Dispatch;
   extra: AxiosInstance;
 }>(
-  'offers/fetchNearby',
+  'findNearbyOffers',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Offer[]>(`${ApiRoute.Offers}/${id}/nearby`);
     dispatch(setNearbyOffers(data));
+  },
+);
+
+export const getOffer = createAsyncThunk<void, string, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'getOffer',
+  async (id, {dispatch, extra: api}) => {
+    const url = `${ApiRoute.Offers}/${id}`
+    const {data} = await api.get<DetailedOffer>(`${ApiRoute.Offers}/${id}`);
+    dispatch(setDetailedOffer(data));
   },
 );

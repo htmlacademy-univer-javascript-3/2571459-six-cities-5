@@ -5,74 +5,33 @@ import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
 import {store} from '../Store';
-import {findNearbyOffers} from '../api/ApiClient.ts';
+import {findNearbyOffers, getOffer} from '../api/ApiClient.ts';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {useParams} from 'react-router-dom';
-
+import {Header} from '../Components/Header.tsx';
+import {NotFoundPage} from './NotFoundPage.tsx';
+import {OfferGallery} from '../Components/OfferGallery.tsx';
 
 export function OfferPage() {
-  const {offerId} = useParams();
+  const {id} = useParams();
+  const offerId = id || '-';
   useEffect(() => {
-    store.dispatch(findNearbyOffers(offerId || ''));
+    store.dispatch(getOffer(offerId));
+    store.dispatch(findNearbyOffers(offerId));
   }, [offerId]);
 
   const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
+  const offer = useAppStoreSelector((state) => state.currentDetailedOffer);
+  if (offer === null) {
+    return <NotFoundPage/>;
+  }
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <Header/>
       <main className="page__main page__main--offer">
         <section className="offer">
-          <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-            </div>
-          </div>
+          <OfferGallery/>
           <div className="offer__container container">
             <div className="offer__wrapper">
               <div className="offer__mark">
@@ -80,7 +39,7 @@ export function OfferPage() {
               </div>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                Beautiful &amp; luxurious studio at great location
+                  {offer.title}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -98,17 +57,17 @@ export function OfferPage() {
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                Apartment
+                  {offer.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                3 Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                Max 4 adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;120</b>
+                <b className="offer__price-value">&euro;{offer.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
