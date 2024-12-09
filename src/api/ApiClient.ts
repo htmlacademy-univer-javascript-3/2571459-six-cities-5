@@ -79,5 +79,6 @@ export const updateBookmark = createAsyncThunk<void, updateBookmarkRequest, {
   async (request, {extra: api}) => {
     await api.post(`${ApiRoute.Favorites}/${request.id}/${request.action}`);
     store.dispatch(fetchOffersAction());
+    store.dispatch(getFavorites());
   },
 );
