@@ -113,3 +113,20 @@ export const getOffer = createAsyncThunk<void, string, {
     dispatch(setDetailedOffer(data));
   },
 );
+
+type CommentRequest = {
+  offerId: string;
+  comment: string;
+  rating: number;
+};
+
+export const sendComment = createAsyncThunk<void, CommentRequest, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'sendComment',
+  async ({offerId, comment, rating}, {extra: api}) => {
+    await api.post(`${ApiRoute.Comments}/${offerId}`, {comment, rating});
+  },
+);
+

@@ -103,7 +103,7 @@ export function OfferPage() {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ReviewMocks.length}</span></h2>
                 <ReviewList mocks={ReviewMocks}/>
-                <CommentSendingForm/>
+                <CommentSendingForm offerId={offer.id}/>
               </section>
             </div>
           </div>

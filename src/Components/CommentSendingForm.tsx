@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react';
+import {store} from '../Store';
+import {sendComment} from '../api/ApiClient.ts';
 
 const titlesForRate = {
   '1': 'terribly',
@@ -27,21 +29,39 @@ function StarInput({rating}: StarInputProps) {
   );
 }
 
-export function CommentSendingForm() {
+type CommentSendingFormProps = {
+  offerId: string;
+}
+
+export function CommentSendingForm({offerId}: CommentSendingFormProps) {
   // _ = setFormData
   const [formData, setFormData] = React.useState({
     review: '',
+    rating: ''
   });
-
-  // Вызывает вопросы... В HtmlAcademy нет явного типа и при этом ничего не разваливается,
-  // а тут без типов разваливается, а с типом коряво выглядит
   const handleFieldChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const { review, rating } = formData;
+    try {
+      await store.dispatch(
+        sendComment({
+          offerId,
+          comment: review,
+          rating: Number(rating),
+        }),
+      );
+      setFormData({ review: '', rating: '' });
+    } catch (error) { /* empty */ }
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <StarInput rating={'5'}/>
@@ -61,7 +81,7 @@ export function CommentSendingForm() {
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={formData.review.length < 50}>Submit</button>
       </div>
     </form>
   );
