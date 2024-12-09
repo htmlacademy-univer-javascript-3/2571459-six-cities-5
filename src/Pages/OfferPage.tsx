@@ -183,8 +183,7 @@ export function OfferPage() {
             }}
           >
             <Map
-              points={nearbyOffers.map((x) => x.city)}
-              selectedPoint={nearbyOffers[0]?.city}
+              offers={nearbyOffers}
               height={'600px'}
               width={'1100px'}
             />
