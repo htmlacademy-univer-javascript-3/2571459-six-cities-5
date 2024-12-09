@@ -1,7 +1,7 @@
 import {Location} from './Location.ts';
 import {City} from './City.ts';
 
-type Host = {
+export type Host = {
   name: string;
   avatarUrl: string;
   isPro: boolean;

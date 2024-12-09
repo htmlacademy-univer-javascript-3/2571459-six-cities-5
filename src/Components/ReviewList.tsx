@@ -1,18 +1,18 @@
 import {Review} from './Review.tsx';
-import {ReviewsMock} from '../mocks/reviews.ts';
+import {Comment} from '../Types/Comment.ts';
 
 type ReviewListProps = {
-  mocks: ReviewsMock[];
+  comments: Comment[];
 }
 
-export function ReviewList({mocks}: ReviewListProps){
+export function ReviewList({comments}: ReviewListProps){
   return (
     <ul className="reviews__list">
-      {mocks.map((reviewMock) => (
+      {comments.map((comment) => (
         <li className="reviews__item"
-          key={reviewMock.key}
+          key={comment.id}
         >
-          <Review {...reviewMock.props}/>
+          <Review {...comment}/>
         </li>
       ))}
     </ul>

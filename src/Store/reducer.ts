@@ -7,11 +7,11 @@ import {
   setLogin,
   setNearbyOffers,
   setOffers,
-  setOffersLoading, setPlacesSortOptions, setDetailedOffer
+  setOffersLoading, setPlacesSortOptions, setDetailedOffer, setComments
 } from './actions.ts';
 import {AppState} from '../Types/AppState.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {PlacesSortOptions} from '../Components/SortVariants.tsx';
+import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
 
 
 const initialState: AppState = {
@@ -25,6 +25,7 @@ const initialState: AppState = {
   authorizationStatus: AuthorizationStatus.NoAuth,
   login: '',
   currentDetailedOffer: null,
+  offerComments: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -52,6 +53,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setComments, (state, action) => {
+      state.offerComments = action.payload;
     })
     .addCase(setPlacesSortOptions, (state, action) => {
       state.placesSortOptions = action.payload;

@@ -1,11 +1,10 @@
 import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
 import {ReviewList} from '../Components/ReviewList.tsx';
-import {ReviewMocks} from '../mocks/reviews.ts';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
 import {store} from '../Store';
-import {findNearbyOffers, getOffer, updateBookmark} from '../api/ApiClient.ts';
+import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {useParams} from 'react-router-dom';
 import {Header} from '../Components/Header.tsx';
@@ -20,10 +19,12 @@ export function OfferPage() {
   useEffect(() => {
     store.dispatch(getOffer(offerId));
     store.dispatch(findNearbyOffers(offerId));
+    store.dispatch(getComments(offerId));
   }, [offerId]);
 
-  const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
   const offer = useAppStoreSelector((state) => state.currentDetailedOffer);
+  const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
+  const comments = useAppStoreSelector((state) => state.offerComments);
   if (offer === null) {
     return <NotFoundPage/>;
   }
@@ -101,8 +102,8 @@ export function OfferPage() {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ReviewMocks.length}</span></h2>
-                <ReviewList mocks={ReviewMocks}/>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+                <ReviewList comments={comments}/>
                 <CommentSendingForm offerId={offer.id}/>
               </section>
             </div>

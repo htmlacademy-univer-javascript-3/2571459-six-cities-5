@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
 import {ApiRoute} from '../Types/ApiRoutes.ts';
 import {
-  setAuthorizationStatus,
+  setAuthorizationStatus, setComments,
   setDetailedOffer,
   setFavorites,
   setLogin,
@@ -15,7 +15,8 @@ import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {store} from '../Store';
 import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 import {getToken, saveToken} from './Api.ts';
-import {DetailedOffer} from "../Types/DetailedOffer.ts";
+import {DetailedOffer} from '../Types/DetailedOffer.ts';
+import {Comment} from '../Types/Comment.ts';
 
 
 export const findOffers = createAsyncThunk<void, undefined, {
@@ -127,6 +128,17 @@ export const sendComment = createAsyncThunk<void, CommentRequest, {
   'sendComment',
   async ({offerId, comment, rating}, {extra: api}) => {
     await api.post(`${ApiRoute.Comments}/${offerId}`, {comment, rating});
+  },
+);
+
+export const getComments = createAsyncThunk<void, string, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'getComments',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Comment[]>(`${ApiRoute.Comments}/${id}`);
+    dispatch(setComments(data));
   },
 );
 
