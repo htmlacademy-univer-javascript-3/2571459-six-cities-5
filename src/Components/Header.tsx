@@ -5,7 +5,6 @@ import {AppRoute} from '../constants/AppRoute.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
 import {dropToken} from '../api/Api.ts';
-import {s} from "vitest/dist/reporters-5f784f42";
 
 function AuthorizedHeaderNav() {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ function AuthorizedHeaderNav() {
     dropToken();
   };
   const login = useAppStoreSelector((state) => state.login);
-  const favoritesLength = useAppStoreSelector((state) => state.favorites.length)
+  const favoritesLength = useAppStoreSelector((state) => state.favorites.length);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">

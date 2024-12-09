@@ -4,7 +4,7 @@ import {Offer} from '../Types/Offer.ts';
 import {store} from '../Store';
 import {updateBookmark} from '../api/ApiClient.ts';
 import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
-import {Header} from "../Components/Header.tsx";
+import {Header} from '../Components/Header.tsx';
 
 
 function FavoritesCard({id, type, isPremium, isFavorite, price, title, previewImage, rating}: CardProps) {
