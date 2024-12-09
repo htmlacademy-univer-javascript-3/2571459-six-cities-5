@@ -109,7 +109,6 @@ export const getOffer = createAsyncThunk<void, string, {
 }>(
   'getOffer',
   async (id, {dispatch, extra: api}) => {
-    const url = `${ApiRoute.Offers}/${id}`
     const {data} = await api.get<DetailedOffer>(`${ApiRoute.Offers}/${id}`);
     dispatch(setDetailedOffer(data));
   },
