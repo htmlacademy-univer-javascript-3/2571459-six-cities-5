@@ -3,13 +3,21 @@ import {ReviewList} from '../Components/ReviewList.tsx';
 import {ReviewMocks} from '../mocks/reviews.ts';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
-import {Offer} from '../Types/Offer.ts';
+import {useEffect} from 'react';
+import {store} from '../Store';
+import {findNearbyOffers} from '../api/ApiClient.ts';
+import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useParams} from 'react-router-dom';
 
-type OfferPageProps = {
-  nearbyOffers: Offer[];
-}
 
-export function OfferPage({nearbyOffers}: OfferPageProps) {
+export function OfferPage() {
+  const {offerId} = useParams();
+  useEffect(() => {
+    store.dispatch(findNearbyOffers(offerId || ''));
+  }, [offerId]);
+
+  const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
+
   return (
     <div className="page">
       <header className="header">
@@ -176,7 +184,7 @@ export function OfferPage({nearbyOffers}: OfferPageProps) {
           >
             <Map
               points={nearbyOffers.map((x) => x.city)}
-              selectedPoint={nearbyOffers[0].city}
+              selectedPoint={nearbyOffers[0]?.city}
               height={'600px'}
               width={'1100px'}
             />
@@ -185,7 +193,7 @@ export function OfferPage({nearbyOffers}: OfferPageProps) {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <NeighbourhoodCardList mocks={[nearbyOffers[1], nearbyOffers[2], nearbyOffers[3]]}/>
+            <NeighbourhoodCardList mocks={nearbyOffers}/>
           </section>
         </div>
       </main>
