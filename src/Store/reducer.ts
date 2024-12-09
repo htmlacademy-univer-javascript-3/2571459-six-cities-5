@@ -3,14 +3,15 @@ import {cities} from '../mocks/cities.ts';
 import {
   setAuthorizationStatus,
   setCity,
+  setFavorites,
   setLogin,
   setNearbyOffers,
-  setFavorites,
   setOffers,
-  setOffersLoading
+  setOffersLoading, setPlacesSortOptions
 } from './actions.ts';
 import {AppState} from '../Types/AppState.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
+import {PlacesSortOptions} from '../Components/SortVariants.tsx';
 
 
 const initialState: AppState = {
@@ -18,6 +19,7 @@ const initialState: AppState = {
   offers: [],
   nearbyOffers: [],
   favorites: [],
+  placesSortOptions: PlacesSortOptions.Default,
   loading: true,
   authorizationStatus: AuthorizationStatus.NoAuth,
   login: ''
@@ -42,6 +44,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setPlacesSortOptions, (state, action) => {
+      state.placesSortOptions = action.payload;
     })
     .addCase(setLogin, (state, action) => {
       state.login = action.payload;
