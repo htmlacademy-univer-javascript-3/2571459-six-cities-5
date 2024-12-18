@@ -1,4 +1,4 @@
-export function offerNotLoggedPage() {
+export function OfferNotLoggedPage() {
   return (
     <div className="page">
       <header className="header">

@@ -1,4 +1,4 @@
-export function favoritesEmptyPage() {
+export function FavoritesEmptyPage() {
   return (
     <div className="page page--favorites-empty">
       <header className="header">

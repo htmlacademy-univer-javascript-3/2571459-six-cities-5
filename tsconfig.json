@@ -20,6 +20,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@components": ["components/index"],
+      "@pages": ["Components/Pages/index.ts"],
+      "@layouts": ["Components/Layouts/index.ts"]
+    }
   },
   "include": ["src", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

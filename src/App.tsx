@@ -1,16 +1,11 @@
-import {Layout} from './Layouts/Layout.tsx';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {NotFoundPage} from './Pages/NotFoundPage.tsx';
-import {FavoritesPage} from './Pages/FavoritesPage.tsx';
-import {OfferPage} from './Pages/OfferPage.tsx';
-import {LoginPage} from './Pages/LoginPage.tsx';
-import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
-import {MainPage} from './Pages/MainPage.tsx';
 import {store} from './Store';
 import {AppRoute} from './constants/AppRoute.ts';
 import {findOffers, getFavorites} from './api/ApiClient.ts';
 import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';
+import {FavoritesPage, LoginPage, MainPage, NotFoundPage, OfferPage} from '@pages';
+import {Layout, PrivateRoute} from '@layouts';
 
 
 store.dispatch(findOffers());
