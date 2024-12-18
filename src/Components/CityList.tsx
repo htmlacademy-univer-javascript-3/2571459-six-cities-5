@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux';
-import {setSelectedCity} from '../store/actions.ts';
+import {setSelectedCity} from '@store-actions';
 import {useAppStoreSelector} from '@hooks';
 import {City} from '@types';
 

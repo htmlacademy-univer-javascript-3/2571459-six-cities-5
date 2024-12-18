@@ -1,6 +1,6 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {login} from '../api/ApiClient.ts';
-import {store} from '../../store/index.ts';
+import {store} from '@store';
 import {AppRoute, AuthorizationStatus} from '@constants';
 import React from 'react';
 import {useAppStoreSelector} from '@hooks';

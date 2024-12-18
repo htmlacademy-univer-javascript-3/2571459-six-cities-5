@@ -8,7 +8,7 @@ import {
   setNearbyOffers,
   setOffers,
   setOffersLoading, setPlacesSortOptions, setDetailedOffer, setComments
-} from './actions.ts';
+} from '@store-actions';
 import {AppState} from '@types';
 import {AuthorizationStatus, PlacesSortOptions} from '@constants';
 

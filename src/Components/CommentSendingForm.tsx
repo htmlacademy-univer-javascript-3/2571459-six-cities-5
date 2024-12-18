@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {store} from '../store';
+import {store} from '@store';
 import {sendComment} from '../api/ApiClient.ts';
 
 const titlesForRate = {

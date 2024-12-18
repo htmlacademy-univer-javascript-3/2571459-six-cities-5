@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {store} from './store';
+import {store} from '@store';
 import {AppRoute} from '@constants';
-import {findOffers, getFavorites} from './api/ApiClient.ts';
+import {findOffers, getFavorites} from '@api-client';
 import {useAppStoreSelector} from '@hooks';
 import {Spinner} from './Components/Spinner.tsx';
 import {FavoritesPage, LoginPage, MainPage, NotFoundPage, OfferPage} from '@pages';

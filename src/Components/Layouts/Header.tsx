@@ -2,8 +2,8 @@ import {useAppStoreSelector} from '@hooks';
 import {AppRoute, AuthorizationStatus} from '@constants';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {setAuthorizationStatus} from '../Store/actions.ts';
-import {dropToken} from '../api/Api.ts';
+import {setAuthorizationStatus} from '@store-actions';
+import {dropToken} from '@api';
 
 function AuthorizedHeaderNav() {
   const dispatch = useDispatch();

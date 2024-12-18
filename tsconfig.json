@@ -28,8 +28,11 @@
       "@types": ["types/index.ts"],
       "@constants": ["constants/index.ts"],
       "@hooks": ["hooks/index.ts"],
-      "@store/*": ["store/*"],
-//      "@store": ["store/index.ts"]
+      "@store": ["store/index.ts"],
+      "@store-actions": ["store/actions.ts"],
+      "@store-reducer": ["store/reducer.ts"],
+      "@api": ["api/Api.ts"],
+      "@api-client": ["api/ApiClient.ts"]
     }
   },
   "include": ["src", "vite.config.ts"],

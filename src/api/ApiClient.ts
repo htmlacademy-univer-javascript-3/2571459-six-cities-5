@@ -8,11 +8,11 @@ import {
   setNearbyOffers,
   setOffers,
   setOffersLoading
-} from '@store/actions.ts';
-import {DetailedOffer, Offer} from '@types';
+} from '@store-actions';
+import {DetailedOffer, Offer, Comment} from '@types';
 import {ApiRoute, AuthorizationStatus, BookmarkRequest} from '@constants';
-import {store} from '../store/index.ts';
-import {getToken, saveToken} from './Api.ts';
+import {store} from '@store';
+import {getToken, saveToken} from '@api';
 
 
 export const findOffers = createAsyncThunk<void, undefined, {

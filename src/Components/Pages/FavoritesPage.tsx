@@ -1,8 +1,8 @@
 import {CardProps} from '../Components/CardBase.tsx';
 import {useAppStoreSelector} from '@hooks';
 import {Offer} from '@types';
-import {store} from '../Store';
-import {updateBookmark} from '../api/ApiClient.ts';
+import {store} from '@store';
+import {updateBookmark} from '@api/ApiClient.ts';
 import {BookmarkRequest} from '@constants';
 import {Header} from '@layouts';
 

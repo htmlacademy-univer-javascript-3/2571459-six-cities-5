@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute, BookmarkRequest} from '@constants';
-import {store} from '../store';
+import {store} from '@store';
 import {updateBookmark} from '../api/ApiClient.ts';
 import {memo} from 'react';
 

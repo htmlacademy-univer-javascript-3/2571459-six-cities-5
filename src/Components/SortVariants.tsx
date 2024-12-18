@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAppStoreSelector} from '@hooks';
-import {store} from '../store';
-import {setPlacesSortOptions} from '../store/actions.ts';
+import {store} from '@store';
+import {setPlacesSortOptions} from '@store-actions';
 import {Offer} from '@types';
 import {PlacesSortOptions} from '@constants';
 

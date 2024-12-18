@@ -3,7 +3,7 @@ import {ReviewList} from '../Components/ReviewList.tsx';
 import {Map} from '../Components/Map.tsx';
 import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
-import {store} from '../Store';
+import {store} from '@store';
 import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
 import {useAppStoreSelector} from '@hooks';
 import {useParams} from 'react-router-dom';
