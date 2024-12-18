@@ -20,9 +20,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src/",
+    "baseUrl": "./src",
     "paths": {
-      "@components": ["components/index"],
+      "@components": ["components/index.ts"],
       "@pages": ["components/pages/index.ts"],
       "@layouts": ["components/layouts/index.ts"],
       "@types": ["types/index.ts"],
