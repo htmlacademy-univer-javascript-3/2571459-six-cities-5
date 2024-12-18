@@ -1,8 +1,7 @@
 import axios, {AxiosError, InternalAxiosRequestConfig} from 'axios';
-import {API_URL, TokenKey} from '../constants/strings.ts';
+import {AuthorizationStatus, API_URL, TokenKey} from '@constants';
 import {useDispatch} from 'react-redux';
-import {setAuthorizationStatus} from '../Store/actions.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
+import {setAuthorizationStatus} from '../store/actions.ts';
 
 export const getToken = (): string => localStorage.getItem(TokenKey) ?? '';
 

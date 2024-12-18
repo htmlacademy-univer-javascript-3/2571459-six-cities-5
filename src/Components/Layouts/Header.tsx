@@ -1,4 +1,4 @@
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useAppStoreSelector} from '@hooks';
 import {AppRoute, AuthorizationStatus} from '@constants';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';

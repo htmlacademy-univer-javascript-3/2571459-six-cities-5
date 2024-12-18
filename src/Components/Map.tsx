@@ -1,8 +1,7 @@
 import {useEffect, useRef} from 'react';
-import {useMap} from '../hooks/useMap.ts';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useAppStoreSelector, useMap} from '@hooks';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
 import {Offer} from '@types';
 

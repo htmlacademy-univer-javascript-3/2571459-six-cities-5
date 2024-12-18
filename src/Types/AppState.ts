@@ -1,7 +1,6 @@
 import {City} from './City.ts';
 import {Offer} from './Offer.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
+import {AuthorizationStatus, PlacesSortOptions} from '@constants';
 import {DetailedOffer} from './DetailedOffer.ts';
 import {Comment} from './Comment.ts';
 

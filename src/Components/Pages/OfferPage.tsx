@@ -5,7 +5,7 @@ import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
 import {store} from '../Store';
 import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useAppStoreSelector} from '@hooks';
 import {useParams} from 'react-router-dom';
 import {Header} from '@layouts';
 import {NotFoundPage} from './NotFoundPage.tsx';

@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux';
-import {setSelectedCity} from '../Store/actions.ts';
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {setSelectedCity} from '../store/actions.ts';
+import {useAppStoreSelector} from '@hooks';
 import {City} from '@types';
 
 type CityListProps = {

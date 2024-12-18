@@ -1,6 +1,5 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
-import {ApiRoute} from '../types/ApiRoutes.ts';
 import {
   setAuthorizationStatus, setComments,
   setDetailedOffer,
@@ -9,14 +8,11 @@ import {
   setNearbyOffers,
   setOffers,
   setOffersLoading
-} from '../Store/actions.ts';
-import {Offer} from '../types/Offer.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {store} from '../Store';
-import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
+} from '@store/actions.ts';
+import {DetailedOffer, Offer} from '@types';
+import {ApiRoute, AuthorizationStatus, BookmarkRequest} from '@constants';
+import {store} from '../store/index.ts';
 import {getToken, saveToken} from './Api.ts';
-import {DetailedOffer} from '../types/DetailedOffer.ts';
-import {Comment} from '../types/Comment.ts';
 
 
 export const findOffers = createAsyncThunk<void, undefined, {

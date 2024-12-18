@@ -1,7 +1,7 @@
 import {CityCard} from './CityCard.tsx';
 import {Offer} from '@types';
-import {store} from '../Store';
-import {setHoveredOffer} from '../Store/actions.ts';
+import {store} from 'store';
+import {setHoveredOffer} from '../store/actions.ts';
 
 type OffersListProps = {
   offers: Array<Offer>;

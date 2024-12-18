@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '@constants';
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useAppStoreSelector} from '@hooks';
 
 
 type PrivateRouteProps = {

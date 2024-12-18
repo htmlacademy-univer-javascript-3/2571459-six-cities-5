@@ -1,5 +1,5 @@
 import {CardProps} from '../Components/CardBase.tsx';
-import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
+import {useAppStoreSelector} from '@hooks';
 import {Offer} from '@types';
 import {store} from '../Store';
 import {updateBookmark} from '../api/ApiClient.ts';

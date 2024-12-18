@@ -9,9 +9,8 @@ import {
   setOffers,
   setOffersLoading, setPlacesSortOptions, setDetailedOffer, setComments
 } from './actions.ts';
-import {AppState} from '../types/AppState.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
-import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
+import {AppState} from '@types';
+import {AuthorizationStatus, PlacesSortOptions} from '@constants';
 
 
 const initialState: AppState = {
