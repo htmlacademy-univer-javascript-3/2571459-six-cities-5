@@ -1,4 +1,4 @@
-import {Location} from './Location.ts';
+import {Location} from '@types';
 
 export type City = {
   name: string;

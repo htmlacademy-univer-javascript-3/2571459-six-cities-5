@@ -1,4 +1,4 @@
-import {NeighbourhoodCard} from './NeighbourhoodCard.tsx';
+import {NeighbourhoodCard} from '@components';
 import {Offer} from '@types';
 
 type NeighbourhoodListProps = {

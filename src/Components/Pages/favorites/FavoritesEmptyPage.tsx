@@ -1,5 +1,6 @@
 export function FavoritesEmptyPage() {
   return (
+    // TODO исправить на Header
     <div className="page page--favorites-empty">
       <header className="header">
         <div className="container">

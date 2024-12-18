@@ -1,4 +1,4 @@
-import {Host} from './DetailedOffer.ts';
+import {Host} from '@types';
 
 export type Comment = {
   id: string;

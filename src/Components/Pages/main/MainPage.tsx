@@ -1,11 +1,9 @@
 import {Fragment} from 'react';
-import {cities} from '../mocks/cities.ts';
-import {OffersList} from '../Components/OffersList.tsx';
-import {Map} from '../Components/Map.tsx';
-import {CityList} from '../Components/CityList.tsx';
+import {CityList, Map, OffersList} from '@components';
 import {useAppStoreSelector} from '@hooks';
-import {MainEmptyPage} from './MainEmptyPage.tsx';
-import {GetPlacesComparer, SortVariants} from '../Components/SortVariants.tsx';
+import {MainEmptyPage} from '@pages';
+import {GetPlacesComparer, SortVariants} from '@components';
+import {cities} from '../../../mocks/cities.ts';
 
 
 export function MainPage() {

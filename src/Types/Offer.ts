@@ -1,5 +1,4 @@
-import {Location} from './Location.ts';
-import {City} from './City.ts';
+import {City, Location} from '@types';
 
 
 export type Offer = {

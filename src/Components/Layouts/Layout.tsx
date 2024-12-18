@@ -1,4 +1,4 @@
-import {Header} from '../Components/Header.tsx';
+import {Header} from '@layouts';
 import {Outlet} from 'react-router-dom';
 
 export function Layout() {

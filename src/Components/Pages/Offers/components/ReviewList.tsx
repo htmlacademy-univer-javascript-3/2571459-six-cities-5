@@ -1,4 +1,4 @@
-import {Review} from './Review.tsx';
+import {Review} from '@components';
 import {Comment} from '@types';
 
 type ReviewListProps = {

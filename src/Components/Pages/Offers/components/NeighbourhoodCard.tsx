@@ -1,4 +1,4 @@
-import {CardBase, CardProps} from './CardBase.tsx';
+import {CardBase, CardProps} from '@components';
 
 export function NeighbourhoodCard({id, type, isPremium, price, title, previewImage, rating, isFavorite}: CardProps) {
   return (

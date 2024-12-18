@@ -1,5 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom';
-import {login} from '../api/ApiClient.ts';
+import {login} from '@api-client';
 import {store} from '@store';
 import {AppRoute, AuthorizationStatus} from '@constants';
 import React from 'react';

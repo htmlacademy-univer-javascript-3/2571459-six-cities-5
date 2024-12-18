@@ -1,17 +1,13 @@
-import {CommentSendingForm} from '../Components/CommentSendingForm.tsx';
-import {ReviewList} from '../Components/ReviewList.tsx';
-import {Map} from '../Components/Map.tsx';
-import {NeighbourhoodCardList} from '../Components/NeighbourhoodCardList.tsx';
 import {useEffect} from 'react';
-import {store} from '@store';
-import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
-import {useAppStoreSelector} from '@hooks';
 import {useParams} from 'react-router-dom';
-import {Header} from '@layouts';
-import {NotFoundPage} from './NotFoundPage.tsx';
-import {OfferGallery} from '../Components/OfferGallery.tsx';
-import {OfferGoods} from '../Components/OfferGoods.tsx';
+
+import {findNearbyOffers, getComments, getOffer, updateBookmark} from '@api-client';
+import {CommentSendingForm, Map, NeighbourhoodCardList, OfferGallery, OfferGoods, ReviewList} from '@components';
 import {BookmarkRequest} from '@constants';
+import {useAppStoreSelector} from '@hooks';
+import {Header} from '@layouts';
+import {NotFoundPage} from '@pages';
+import {store} from '@store';
 
 export function OfferPage() {
   const {id} = useParams();

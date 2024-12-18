@@ -1,10 +1,10 @@
-import {CardProps} from '../Components/CardBase.tsx';
-import {useAppStoreSelector} from '@hooks';
-import {Offer} from '@types';
-import {store} from '@store';
-import {updateBookmark} from '@api/ApiClient.ts';
+import {updateBookmark} from '@api-client';
+import {CardProps} from '@components';
 import {BookmarkRequest} from '@constants';
+import {useAppStoreSelector} from '@hooks';
 import {Header} from '@layouts';
+import {store} from '@store';
+import {Offer} from '@types';
 
 
 function FavoritesCard({id, type, isPremium, isFavorite, price, title, previewImage, rating}: CardProps) {
