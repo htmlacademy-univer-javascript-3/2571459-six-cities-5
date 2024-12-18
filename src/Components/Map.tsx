@@ -3,8 +3,8 @@ import {useMap} from '../hooks/useMap.ts';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../constants/constants.ts';
-import {Offer} from '../Types/Offer.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
+import {Offer} from '@types';
 
 
 type MapProps = {

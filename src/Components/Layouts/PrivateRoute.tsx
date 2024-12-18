@@ -1,6 +1,5 @@
 import {Navigate} from 'react-router-dom';
-import {AppRoute} from '../constants/AppRoute.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 
 

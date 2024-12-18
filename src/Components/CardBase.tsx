@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../constants/AppRoute.ts';
+import {AppRoute, BookmarkRequest} from '@constants';
 import {store} from '../Store';
 import {updateBookmark} from '../api/ApiClient.ts';
-import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
 import {memo} from 'react';
 
 export type CardProps = {

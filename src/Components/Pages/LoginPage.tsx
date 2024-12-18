@@ -1,10 +1,9 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {login} from '../api/ApiClient.ts';
 import {store} from '../Store';
-import {AppRoute} from '../constants/AppRoute.ts';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import React from 'react';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 
 export function LoginPage() {
   const navigate = useNavigate();

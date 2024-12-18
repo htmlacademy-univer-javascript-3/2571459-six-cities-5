@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {store} from './Store';
-import {AppRoute} from './constants/AppRoute.ts';
+import {AppRoute} from '@constants';
 import {findOffers, getFavorites} from './api/ApiClient.ts';
 import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
 import {Spinner} from './Components/Spinner.tsx';

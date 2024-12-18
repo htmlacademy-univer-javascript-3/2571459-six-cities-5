@@ -1,7 +1,6 @@
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
-import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../constants/AppRoute.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
 import {dropToken} from '../api/Api.ts';

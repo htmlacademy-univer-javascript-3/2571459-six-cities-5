@@ -9,7 +9,7 @@ import {
   setOffers,
   setOffersLoading, setPlacesSortOptions, setDetailedOffer, setComments
 } from './actions.ts';
-import {AppState} from '../Types/AppState.ts';
+import {AppState} from '../types/AppState.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
 

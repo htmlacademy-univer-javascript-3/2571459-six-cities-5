@@ -1,10 +1,10 @@
 import {createAction} from '@reduxjs/toolkit';
-import {City} from '../Types/City.ts';
-import {Offer} from '../Types/Offer.ts';
+import {City} from '../types/City.ts';
+import {Offer} from '../types/Offer.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';
 import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
-import {DetailedOffer} from '../Types/DetailedOffer.ts';
-import {Comment} from '../Types/Comment.ts';
+import {DetailedOffer} from '../types/DetailedOffer.ts';
+import {Comment} from '../types/Comment.ts';
 
 export const setOffers = createAction<Offer[]>('setOffers');
 export const setHoveredOffer = createAction<Offer | null>('setHoveredOffer');

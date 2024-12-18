@@ -7,11 +7,11 @@ import {store} from '../Store';
 import {findNearbyOffers, getComments, getOffer, updateBookmark} from '../api/ApiClient.ts';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {useParams} from 'react-router-dom';
-import {Header} from '../Components/Header.tsx';
+import {Header} from '@layouts';
 import {NotFoundPage} from './NotFoundPage.tsx';
 import {OfferGallery} from '../Components/OfferGallery.tsx';
 import {OfferGoods} from '../Components/OfferGoods.tsx';
-import {BookmarkRequest} from '../constants/BookmarkRequest.ts';
+import {BookmarkRequest} from '@constants';
 
 export function OfferPage() {
   const {id} = useParams();

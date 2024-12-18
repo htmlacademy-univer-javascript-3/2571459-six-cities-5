@@ -1,5 +1,5 @@
 import {Review} from './Review.tsx';
-import {Comment} from '../Types/Comment.ts';
+import {Comment} from '@types';
 
 type ReviewListProps = {
   comments: Comment[];

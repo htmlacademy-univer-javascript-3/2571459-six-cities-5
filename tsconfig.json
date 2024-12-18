@@ -23,8 +23,10 @@
     "baseUrl": "./src/",
     "paths": {
       "@components": ["components/index"],
-      "@pages": ["Components/Pages/index.ts"],
-      "@layouts": ["Components/Layouts/index.ts"]
+      "@pages": ["components/pages/index.ts"],
+      "@layouts": ["components/layouts/index.ts"],
+      "@types": ["types/index.ts"],
+      "@constants": ["constants/index.ts"]
     }
   },
   "include": ["src", "vite.config.ts"],

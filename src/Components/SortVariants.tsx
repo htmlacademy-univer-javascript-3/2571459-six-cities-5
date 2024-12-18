@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {useAppStoreSelector} from '../hooks/useAppStoreStore.ts';
 import {store} from '../Store';
 import {setPlacesSortOptions} from '../Store/actions.ts';
-import {Offer} from '../Types/Offer.ts';
-import {PlacesSortOptions} from '../constants/PlacesSortOptions.ts';
+import {Offer} from '@types';
+import {PlacesSortOptions} from '@constants';
 
 export function GetPlacesComparer(currentOption: PlacesSortOptions) {
   switch (currentOption) {

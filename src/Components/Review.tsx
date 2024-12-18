@@ -1,5 +1,5 @@
 import {Fragment} from 'react';
-import {Host} from '../Types/DetailedOffer.ts';
+import {Host} from '@types';
 
 export type ReviewProps = {
   rating: number;

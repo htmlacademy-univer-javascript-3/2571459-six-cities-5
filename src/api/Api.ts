@@ -1,5 +1,5 @@
 import axios, {AxiosError, InternalAxiosRequestConfig} from 'axios';
-import {API_URL, TokenKey} from '../constants/constants.ts';
+import {API_URL, TokenKey} from '../constants/strings.ts';
 import {useDispatch} from 'react-redux';
 import {setAuthorizationStatus} from '../Store/actions.ts';
 import {AuthorizationStatus} from '../constants/AuthorizationStatus.ts';

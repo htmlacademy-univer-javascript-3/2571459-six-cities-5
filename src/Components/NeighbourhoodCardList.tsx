@@ -1,5 +1,5 @@
 import {NeighbourhoodCard} from './NeighbourhoodCard.tsx';
-import {Offer} from '../Types/Offer.ts';
+import {Offer} from '@types';
 
 type NeighbourhoodListProps = {
   mocks: Array<Offer>;

@@ -1,5 +1,5 @@
 import {CityCard} from './CityCard.tsx';
-import {Offer} from '../Types/Offer.ts';
+import {Offer} from '@types';
 import {store} from '../Store';
 import {setHoveredOffer} from '../Store/actions.ts';
 
