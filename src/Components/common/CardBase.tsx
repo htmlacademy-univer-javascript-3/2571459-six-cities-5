@@ -1,8 +1,9 @@
 import {memo} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {updateBookmark} from '@api-client';
-import {AppRoute, BookmarkRequest} from '@constants';
+import {AppRoute, AuthorizationStatus, BookmarkRequest} from '@constants';
 import {store} from '@store';
+import {useAppStoreSelector} from '@hooks';
 
 export type CardProps = {
   id: string;
@@ -39,6 +40,10 @@ export function CardBaseNoMemo({id,
   const articleClass = `${cardType}__card place-card`;
   const placeCardInfoClass = `${cardType}__card-info place-card__info`;
   const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
+
+  const authStatus = useAppStoreSelector((state) => state.authorizationStatus);
+  const navigate = useNavigate();
+
   return (
     <article className={articleClass}>
       {isPremium &&
@@ -58,9 +63,15 @@ export function CardBaseNoMemo({id,
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-          <button className={bookmarkClass} type="button" onClick={ async () => await store.dispatch(isFavorite
-            ? updateBookmark({id: id, action: BookmarkRequest.Remove})
-            : updateBookmark({id: id, action: BookmarkRequest.Add}))}
+          <button className={bookmarkClass} type="button" onClick={ async () => {
+            if (authStatus === AuthorizationStatus.Auth) {
+              await store.dispatch(isFavorite
+                ? updateBookmark({id: id, action: BookmarkRequest.Remove})
+                : updateBookmark({id: id, action: BookmarkRequest.Add}));
+            } else {
+              navigate(AppRoute.Login);
+            }
+          }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
