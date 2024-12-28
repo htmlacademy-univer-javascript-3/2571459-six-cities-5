@@ -1,6 +1,6 @@
 import {Header} from '@layouts';
 import {CityList} from '@components';
-import {cities} from '../../../mocks/cities.ts';
+import {cities} from '@mocks';
 
 export function MainEmptyPage() {
   return (

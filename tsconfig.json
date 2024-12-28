@@ -28,6 +28,7 @@
       "@types": ["types/index.ts"],
       "@constants": ["constants/index.ts"],
       "@hooks": ["hooks/index.ts"],
+      "@mocks": ["mocks/cities.ts"],
       "@store": ["store/index.ts"],
       "@store-actions": ["store/actions.ts"],
       "@store-reducer": ["store/reducer.ts"],

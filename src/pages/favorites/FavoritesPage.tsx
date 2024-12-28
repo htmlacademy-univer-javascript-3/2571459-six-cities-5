@@ -4,6 +4,7 @@ import {useAppStoreSelector} from '@hooks';
 import {Header} from '@layouts';
 import {Offer} from '@types';
 import {Link} from 'react-router-dom';
+import {FavoritesEmptyPage} from '@pages';
 
 
 function FavoritesCard({id, type, isPremium, isFavorite, price, title, previewImage, rating, previewSize}: CardProps) {
@@ -77,6 +78,9 @@ function FavoritesList({favorites}: FavoritesListProps) {
 
 export function FavoritesPage() {
   const favorites = useAppStoreSelector((state) => state.favorites);
+  if (favorites.length === 0) {
+    return <FavoritesEmptyPage/>;
+  }
   return (
     <div className="page">
       <Header/>

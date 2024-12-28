@@ -3,7 +3,7 @@ import {CityList, Map, OffersList} from '@components';
 import {useAppStoreSelector} from '@hooks';
 import {MainEmptyPage} from '@pages';
 import {GetPlacesComparer, SortVariants} from '@components';
-import {cities} from '../../../mocks/cities.ts';
+import {cities} from '@mocks';
 
 
 export function MainPage() {
