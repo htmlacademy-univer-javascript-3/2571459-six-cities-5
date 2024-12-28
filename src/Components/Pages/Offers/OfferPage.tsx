@@ -112,16 +112,17 @@ export function OfferPage() {
             }}
           >
             <Map
-              offers={nearbyOffers}
+              offers={nearbyOffers.slice(0, 3).concat(offer)}
               height={'600px'}
               width={'1100px'}
+              hoveredOffer={offer}
             />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <NeighbourhoodCardList mocks={nearbyOffers}/>
+            <NeighbourhoodCardList offers={nearbyOffers.slice(0, 3)}/>
           </section>
         </div>
       </main>

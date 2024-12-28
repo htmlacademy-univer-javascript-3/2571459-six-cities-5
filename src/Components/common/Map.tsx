@@ -10,11 +10,13 @@ type MapProps = {
   offers: Offer[];
   width: string;
   height: string;
+  hoveredOffer?: Offer | null;
 }
 
-export function Map({offers, width, height}: MapProps){
+export function Map({offers, width, height, hoveredOffer}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const hoveredOffer = useAppStoreSelector((state) => state.hoveredOffer);
+  const hoveredDynamicOffer = useAppStoreSelector((state) => state.hoveredOffer);
+  hoveredOffer ||= hoveredDynamicOffer;
   const selectedCity = useAppStoreSelector((state) => state.selectedCity);
   const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 12});
 
@@ -47,7 +49,7 @@ export function Map({offers, width, height}: MapProps){
           .addTo(map);
       });
     }
-  }, [selectedIcon, defaultIcon, map, offers, hoveredOffer, selectedCity]);
+  }, [selectedIcon, defaultIcon, map, offers, hoveredDynamicOffer, selectedCity, hoveredOffer?.id]);
 
   return (
     <div
