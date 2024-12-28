@@ -2,7 +2,6 @@ import {Footer, Header} from '@layouts';
 
 export function FavoritesEmptyPage() {
   return (
-    // TODO исправить на Header
     <div className="page page--favorites-empty">
       <Header/>
       <main className="page__main page__main--favorites page__main--favorites-empty">
