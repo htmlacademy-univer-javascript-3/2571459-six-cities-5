@@ -2,12 +2,17 @@ import {Link, useNavigate} from 'react-router-dom';
 import {login} from '@api-client';
 import {store} from '@store';
 import {AppRoute, AuthorizationStatus} from '@constants';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAppStoreSelector} from '@hooks';
 
 export function LoginPage() {
   const navigate = useNavigate();
   const authStatus = useAppStoreSelector((state) => state.authorizationStatus);
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
+  }, [authStatus, navigate]);
   const authorizeAction = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -16,9 +21,7 @@ export function LoginPage() {
     store.dispatch(
       login({email, password})
     ).then(() => {
-      if (authStatus === AuthorizationStatus.Auth) {
-        navigate(AppRoute.Main);
-      }
+      navigate(AppRoute.Main);
     });
   };
   return (
