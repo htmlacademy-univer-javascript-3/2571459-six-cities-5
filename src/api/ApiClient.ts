@@ -1,7 +1,8 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk, Dispatch} from '@reduxjs/toolkit';
 import {
-  setAuthorizationStatus, setComments,
+  setAuthorizationStatus,
+  setComments,
   setDetailedOffer,
   setFavorites,
   setLogin,
@@ -9,7 +10,7 @@ import {
   setOffers,
   setOffersLoading
 } from '@store-actions';
-import {DetailedOffer, Offer, Comment} from '@types';
+import {Comment, DetailedOffer, Offer} from '@types';
 import {ApiRoute, AuthorizationStatus, BookmarkRequest} from '@constants';
 import {store} from '@store';
 import {getToken, saveToken} from '@api';
@@ -56,6 +57,21 @@ export const login = createAsyncThunk<void, LoginData, {
         saveToken(data.token);
       }
     } catch (e) { /* empty */ }
+  },
+);
+
+export const checkAuth = createAsyncThunk<void, undefined, {
+  dispatch: Dispatch;
+  extra: AxiosInstance;
+}>(
+  'checkAuth',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<LoginResponse>(ApiRoute.Login);
+      dispatch(setLogin(data.email));
+      saveToken(data.token);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    } catch (err) { /* empty */ }
   },
 );
 

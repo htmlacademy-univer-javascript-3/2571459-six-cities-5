@@ -13,16 +13,31 @@ export type CardProps = {
   title: string;
   previewImage: string;
   rating: 0 | 1 | 2 | 3 | 4 | 5;
+  previewSize?: {
+    width: number;
+    height: number;
+  };
 }
 
 type CardBaseProps = CardProps & {
-  cardType: 'cities' | 'near-places';
+  cardType: 'cities' | 'near-places' | 'favorites';
 }
 
-export function CardBaseNoMemo({id, type, isPremium, price, title, previewImage, rating, isFavorite, cardType}: CardBaseProps) {
+export function CardBaseNoMemo({id,
+  type,
+  isPremium,
+  price, title,
+  previewImage,
+  rating,
+  isFavorite,
+  cardType,
+  previewSize
+}: CardBaseProps) {
+  previewSize ??= {width: 260, height: 200};
   const starsWidth = `${rating * 20}%`;
   const bookmarkClass = `place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`;
   const articleClass = `${cardType}__card place-card`;
+  const placeCardInfoClass = `${cardType}__card-info place-card__info`;
   const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
   return (
     <article className={articleClass}>
@@ -33,10 +48,10 @@ export function CardBaseNoMemo({id, type, isPremium, price, title, previewImage,
 
       <div className={imageWrapperClass}>
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width={previewSize.width} height={previewSize.height} alt="Place image"/>
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={placeCardInfoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
