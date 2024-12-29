@@ -52,7 +52,13 @@ export function CardBaseNoMemo({id,
 
       <div className={imageWrapperClass}>
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={previewImage} width={previewSize.width} height={previewSize.height} alt="Place image"/>
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={previewSize.width}
+            height={previewSize.height}
+            alt="Place image"
+          />
         </Link>
       </div>
       <div className={placeCardInfoClass}>
@@ -83,7 +89,7 @@ export function CardBaseNoMemo({id,
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.Offer}>{title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
