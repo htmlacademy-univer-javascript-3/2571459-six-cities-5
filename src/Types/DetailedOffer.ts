@@ -10,7 +10,7 @@ export type DetailedOffer = {
   id: string;
   type: 'Room' | 'Apartment';
   isPremium?: boolean;
-  isFavorite?: boolean;
+  isFavorite: boolean;
   price: number;
   title: string;
   previewImage: string;

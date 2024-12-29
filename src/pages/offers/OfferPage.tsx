@@ -1,13 +1,14 @@
 import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
-import {findNearbyOffers, getComments, getOffer, updateBookmark} from '@api-client';
+import {findNearbyOffers, getComments, getOffer} from '@api-client';
 import {CommentSendingForm, Map, NeighbourhoodCardList, OfferGallery, OfferGoods, ReviewList} from '@components';
-import {BookmarkRequest} from '@constants';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import {useAppStoreSelector} from '@hooks';
 import {Header} from '@layouts';
 import {NotFoundPage} from '@pages';
 import {store} from '@store';
+import {handleUpdateBookmark} from '../../components/helpers';
 
 export function OfferPage() {
   const {id} = useParams();
@@ -18,14 +19,17 @@ export function OfferPage() {
     store.dispatch(getComments(offerId));
   }, [offerId]);
 
+  const navigate = useNavigate();
   const offer = useAppStoreSelector((state) => state.currentDetailedOffer);
   const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
   const comments = useAppStoreSelector((state) => state.offerComments);
+  const isAuth = useAppStoreSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
   if (offer === null) {
     return <NotFoundPage/>;
   }
   const starsWidth = `${offer.rating * 20}%`;
-  const bookmarkClass = `place-card__bookmark-button ${offer.isFavorite && 'place-card__bookmark-button--active'} button`;
+  const bookmarkClass = `offer__bookmark-button ${offer.isFavorite && 'offer__bookmark-button--active'} button`;
+
 
   return (
     <div className="page">
@@ -44,9 +48,12 @@ export function OfferPage() {
                   {offer.title}
                 </h1>
                 {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-                <button className={bookmarkClass} type="button" onClick={ async () => await store.dispatch(offer.isFavorite
-                  ? updateBookmark({id: offer.id, action: BookmarkRequest.Remove})
-                  : updateBookmark({id: offer.id, action: BookmarkRequest.Add}))}
+                <button className={bookmarkClass} type="button" onClick={ async () => {
+                  await handleUpdateBookmark(offer.id,
+                    offer.isFavorite,
+                    isAuth,
+                    () => navigate(AppRoute.Login));
+                }}
                 >
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
@@ -100,7 +107,10 @@ export function OfferPage() {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                 <ReviewList comments={comments}/>
-                <CommentSendingForm offerId={offer.id}/>
+                {
+                  isAuth &&
+                  <CommentSendingForm offerId={offer.id}/>
+                }
               </section>
             </div>
           </div>

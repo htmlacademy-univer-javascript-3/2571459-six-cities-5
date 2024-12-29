@@ -1,6 +1,6 @@
 export type {CardProps} from './common/CardBase.tsx';
 
-export {GetPlacesComparer, SortVariants} from './helpers/SortVariants.tsx';
+export {GetPlacesComparer, SortVariants} from './common/SortVariants.tsx';
 
 export {CardBase} from './common/CardBase.tsx';
 export {Map} from './common/Map.tsx';

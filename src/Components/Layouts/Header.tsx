@@ -25,9 +25,9 @@ function AuthorizedHeaderNav() {
           </Link>
         </li>
         <li className="header__nav-item">
-          <Link className="header__nav-link" to={AppRoute.Login} onClick={signOut}>
+          <div className="header__nav-link" onClick={signOut}>
             <span className="header__signout">Sign out</span>
-          </Link>
+          </div>
         </li>
       </ul>
     </nav>

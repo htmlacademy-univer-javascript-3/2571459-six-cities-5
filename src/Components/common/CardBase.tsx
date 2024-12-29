@@ -1,9 +1,8 @@
 import {memo} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {updateBookmark} from '@api-client';
-import {AppRoute, AuthorizationStatus, BookmarkRequest} from '@constants';
-import {store} from '@store';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import {useAppStoreSelector} from '@hooks';
+import {handleUpdateBookmark} from '../helpers';
 
 export type CardProps = {
   id: string;
@@ -41,7 +40,7 @@ export function CardBaseNoMemo({id,
   const placeCardInfoClass = `${cardType}__card-info place-card__info`;
   const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
 
-  const authStatus = useAppStoreSelector((state) => state.authorizationStatus);
+  const isAuth = useAppStoreSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
   const navigate = useNavigate();
 
   return (
@@ -64,13 +63,10 @@ export function CardBaseNoMemo({id,
           </div>
           {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <button className={bookmarkClass} type="button" onClick={ async () => {
-            if (authStatus === AuthorizationStatus.Auth) {
-              await store.dispatch(isFavorite
-                ? updateBookmark({id: id, action: BookmarkRequest.Remove})
-                : updateBookmark({id: id, action: BookmarkRequest.Add}));
-            } else {
-              navigate(AppRoute.Login);
-            }
+            await handleUpdateBookmark(id,
+              isFavorite || false,
+              isAuth,
+              () => navigate(AppRoute.Login));
           }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
