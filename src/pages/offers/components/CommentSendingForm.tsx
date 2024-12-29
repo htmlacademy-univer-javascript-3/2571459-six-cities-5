@@ -12,15 +12,24 @@ const titlesForRate = {
 } as const;
 
 type StarInputProps = {
+  onChange: (x: React.ChangeEvent<HTMLInputElement>) => void;
   rating: '1' | '2' | '3' | '4' | '5';
 }
 
-function StarInput({rating}: StarInputProps) {
+function StarInput({rating, onChange}: StarInputProps) {
   const id = `${rating}-stars`;
   const title = titlesForRate[rating];
+
   return (
     <Fragment>
-      <input className="form__rating-input visually-hidden" name="rating" value={rating} id={id} type="radio"/>
+      <input
+        className="form__rating-input visually-hidden"
+        name="rating"
+        value={rating}
+        id={id}
+        onChange={onChange}
+        type="radio"
+      />
       <label htmlFor={id} className="reviews__rating-label form__rating-label" title={title}>
         <svg className="form__star-image" width="37" height="33">
           <use xlinkHref="#icon-star"></use>
@@ -45,6 +54,11 @@ export function CommentSendingForm({offerId}: CommentSendingFormProps) {
     setFormData({...formData, [name]: value});
   };
 
+  const handleRadioChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = evt.target;
+    setFormData({...formData, [name]: value});
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const { review, rating } = formData;
@@ -65,11 +79,11 @@ export function CommentSendingForm({offerId}: CommentSendingFormProps) {
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <StarInput rating={'5'}/>
-        <StarInput rating={'4'}/>
-        <StarInput rating={'3'}/>
-        <StarInput rating={'2'}/>
-        <StarInput rating={'1'}/>
+        <StarInput rating={'5'} onChange={handleRadioChange}/>
+        <StarInput rating={'4'} onChange={handleRadioChange}/>
+        <StarInput rating={'3'} onChange={handleRadioChange}/>
+        <StarInput rating={'2'} onChange={handleRadioChange}/>
+        <StarInput rating={'1'} onChange={handleRadioChange}/>
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"

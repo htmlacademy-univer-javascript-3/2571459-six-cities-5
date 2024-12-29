@@ -7,7 +7,7 @@ import {dropToken} from '@api';
 
 function AuthorizedHeaderNav() {
   const dispatch = useDispatch();
-  const signOut = () => {
+  const handleSignOut = () => {
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     dropToken();
   };
@@ -25,7 +25,7 @@ function AuthorizedHeaderNav() {
           </Link>
         </li>
         <li className="header__nav-item">
-          <div className="header__nav-link" onClick={signOut}>
+          <div className="header__nav-link" onClick={handleSignOut}>
             <span className="header__signout">Sign out</span>
           </div>
         </li>
