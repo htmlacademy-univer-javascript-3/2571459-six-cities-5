@@ -7,7 +7,7 @@ import {useAppStoreSelector} from '@hooks';
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const authStatus = useAppStoreSelector((state) => state.authorizationStatus);
+  const authStatus = useAppStoreSelector((state) => state.app.authorizationStatus);
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Main);

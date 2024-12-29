@@ -12,7 +12,7 @@ store.dispatch(findOffers());
 store.dispatch(getFavorites());
 
 export function App() {
-  const isLoading = useAppStoreSelector((state) => state.loading);
+  const isLoading = useAppStoreSelector((state) => state.app.loading);
   if (isLoading){
     return(<Spinner />);
   }

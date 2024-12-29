@@ -1,4 +1,4 @@
-export type {AppState} from './AppState.ts';
+export type {AppState, OffersState} from './States.ts';
 export type {City} from './City.ts';
 export type {Comment} from './Comment.ts';
 export type {DetailedOffer, Host} from './DetailedOffer.ts';

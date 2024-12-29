@@ -20,10 +20,10 @@ export function OfferPage() {
   }, [offerId]);
 
   const navigate = useNavigate();
-  const offer = useAppStoreSelector((state) => state.currentDetailedOffer);
-  const nearbyOffers = useAppStoreSelector((state) => state.nearbyOffers);
-  const comments = useAppStoreSelector((state) => state.offerComments);
-  const isAuth = useAppStoreSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+  const offer = useAppStoreSelector((state) => state.offers.currentDetailedOffer);
+  const nearbyOffers = useAppStoreSelector((state) => state.offers.nearbyOffers);
+  const comments = useAppStoreSelector((state) => state.offers.offerComments);
+  const isAuth = useAppStoreSelector((state) => state.app.authorizationStatus) === AuthorizationStatus.Auth;
   if (offer === null) {
     return <NotFoundPage/>;
   }

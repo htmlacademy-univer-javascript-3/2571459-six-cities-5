@@ -11,8 +11,8 @@ function AuthorizedHeaderNav() {
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     dropToken();
   };
-  const login = useAppStoreSelector((state) => state.login);
-  const favoritesLength = useAppStoreSelector((state) => state.favorites.length);
+  const login = useAppStoreSelector((state) => state.app.login);
+  const favoritesLength = useAppStoreSelector((state) => state.offers.favorites.length);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -51,7 +51,7 @@ function NoAuthNavHeader() {
 }
 
 export function Header() {
-  const status = useAppStoreSelector((state) => state.authorizationStatus);
+  const status = useAppStoreSelector((state) => state.app.authorizationStatus);
   return (
     <header>
       <div className="container">

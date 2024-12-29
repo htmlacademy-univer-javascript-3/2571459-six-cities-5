@@ -77,7 +77,7 @@ function FavoritesList({favorites}: FavoritesListProps) {
 }
 
 export function FavoritesPage() {
-  const favorites = useAppStoreSelector((state) => state.favorites);
+  const favorites = useAppStoreSelector((state) => state.offers.favorites);
   if (favorites.length === 0) {
     return <FavoritesEmptyPage/>;
   }

@@ -15,9 +15,9 @@ type MapProps = {
 
 export function Map({offers, width, height, hoveredOffer}: MapProps){
   const mapRef = useRef<HTMLDivElement | null>(null);
-  const hoveredDynamicOffer = useAppStoreSelector((state) => state.hoveredOffer);
+  const hoveredDynamicOffer = useAppStoreSelector((state) => state.offers.hoveredOffer);
   hoveredOffer ||= hoveredDynamicOffer;
-  const selectedCity = useAppStoreSelector((state) => state.selectedCity);
+  const selectedCity = useAppStoreSelector((state) => state.app.selectedCity);
   const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 12});
 
   const defaultIcon = leaflet.icon({

@@ -7,9 +7,9 @@ import {cities} from '@mocks';
 
 
 export function MainPage() {
-  const activeCity = useAppStoreSelector((state) => state.selectedCity);
-  const currentPlacesSortOption = useAppStoreSelector((state) => state.placesSortOptions);
-  const offers = useAppStoreSelector((state) => state.offers
+  const activeCity = useAppStoreSelector((state) => state.app.selectedCity);
+  const currentPlacesSortOption = useAppStoreSelector((state) => state.app.placesSortOptions);
+  const offers = useAppStoreSelector((state) => state.offers.offers
     .filter((offer) => offer.city.name === activeCity.name)
     .sort(GetPlacesComparer(currentPlacesSortOption))
   );

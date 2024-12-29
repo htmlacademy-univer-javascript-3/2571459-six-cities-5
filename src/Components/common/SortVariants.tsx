@@ -22,7 +22,7 @@ const optionsList = Object.values(PlacesSortOptions);
 
 export function SortVariants() {
   const [isShow, setIsShow] = useState(false);
-  const currentOption = useAppStoreSelector((state) => state.placesSortOptions);
+  const currentOption = useAppStoreSelector((state) => state.app.placesSortOptions);
 
   return (
     <form className="places__sorting" action="#" method="get" onClick={() => setIsShow(!isShow)}>

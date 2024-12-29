@@ -10,7 +10,7 @@ type CityListProps = {
 }
 
 export function CityList({cities}: CityListProps) {
-  const currentCity = useAppStoreSelector((state) => state.selectedCity);
+  const currentCity = useAppStoreSelector((state) => state.app.selectedCity);
   const dispatch = useDispatch();
 
   function onCityClick(city: City) {

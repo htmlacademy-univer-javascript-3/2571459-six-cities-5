@@ -31,7 +31,7 @@
       "@mocks": ["mocks/cities.ts"],
       "@store": ["store/index.ts"],
       "@store-actions": ["store/actions.ts"],
-      "@store-reducer": ["store/reducer.ts"],
+      "@root-reducer": ["store/rootReducer.ts"],
       "@api": ["api/Api.ts"],
       "@api-client": ["api/ApiClient.ts"]
     }

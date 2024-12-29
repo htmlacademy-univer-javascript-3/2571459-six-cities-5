@@ -40,7 +40,7 @@ export function CardBaseNoMemo({id,
   const placeCardInfoClass = `${cardType}__card-info place-card__info`;
   const imageWrapperClass = `${cardType}__image-wrapper place-card__image-wrapper`;
 
-  const isAuth = useAppStoreSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth = useAppStoreSelector((state) => state.app.authorizationStatus) === AuthorizationStatus.Auth;
   const navigate = useNavigate();
 
   return (
