@@ -1,4 +1,4 @@
-import {City} from '../Types/City.ts';
+import {City} from '@types';
 
 export const cities: City[] = [
   {

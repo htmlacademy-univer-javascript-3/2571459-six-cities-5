@@ -1,5 +1,4 @@
-import {Location} from './Location.ts';
-import {City} from './City.ts';
+import {City, Location} from '@types';
 
 export type Host = {
   name: string;
@@ -11,7 +10,7 @@ export type DetailedOffer = {
   id: string;
   type: 'Room' | 'Apartment';
   isPremium?: boolean;
-  isFavorite?: boolean;
+  isFavorite: boolean;
   price: number;
   title: string;
   previewImage: string;

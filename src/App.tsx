@@ -1,23 +1,18 @@
-import {Layout} from './Layouts/Layout.tsx';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {NotFoundPage} from './Pages/NotFoundPage.tsx';
-import {FavoritesPage} from './Pages/FavoritesPage.tsx';
-import {OfferPage} from './Pages/OfferPage.tsx';
-import {LoginPage} from './Pages/LoginPage.tsx';
-import {PrivateRoute} from './Layouts/PrivateRoute.tsx';
-import {MainPage} from './Pages/MainPage.tsx';
-import {store} from './Store';
-import {AppRoute} from './constants/AppRoute.ts';
-import {findOffers, getFavorites} from './api/ApiClient.ts';
-import {useAppStoreSelector} from './hooks/useAppStoreStore.ts';
-import {Spinner} from './Components/Spinner.tsx';
+import {store} from '@store';
+import {AppRoute} from '@constants';
+import {checkAuth, findOffers, getFavorites} from '@api-client';
+import {useAppStoreSelector} from '@hooks';
+import {Spinner} from '@components';
+import {FavoritesPage, LoginPage, MainPage, NotFoundPage, OfferPage} from '@pages';
+import {Layout, PrivateRoute} from '@layouts';
 
-
+store.dispatch(checkAuth());
 store.dispatch(findOffers());
 store.dispatch(getFavorites());
 
 export function App() {
-  const isLoading = useAppStoreSelector((state) => state.loading);
+  const isLoading = useAppStoreSelector((state) => state.app.loading);
   if (isLoading){
     return(<Spinner />);
   }

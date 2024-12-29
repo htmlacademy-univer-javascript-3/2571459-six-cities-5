@@ -20,6 +20,21 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@components": ["components/index.ts"],
+      "@pages": ["pages/index.ts"],
+      "@layouts": ["components/layouts/index.ts"],
+      "@types": ["types/index.ts"],
+      "@constants": ["constants/index.ts"],
+      "@hooks": ["hooks/index.ts"],
+      "@mocks": ["mocks/cities.ts"],
+      "@store": ["store/index.ts"],
+      "@store-actions": ["store/actions.ts"],
+      "@root-reducer": ["store/rootReducer.ts"],
+      "@api": ["api/Api.ts"],
+      "@api-client": ["api/ApiClient.ts"]
+    }
   },
   "include": ["src", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
