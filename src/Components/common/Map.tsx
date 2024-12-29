@@ -2,7 +2,7 @@ import {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useAppStoreSelector, useMap} from '@hooks';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
+import {MarkerUrl} from '@constants';
 import {Offer} from '@types';
 
 
@@ -21,13 +21,13 @@ export function Map({offers, width, height, hoveredOffer}: MapProps){
   const map = useMap(mapRef, {lat: selectedCity.location.latitude, lng: selectedCity.location.longitude, zoom: 12});
 
   const defaultIcon = leaflet.icon({
-    iconUrl: URL_MARKER_DEFAULT,
+    iconUrl: MarkerUrl.Default,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
 
   const selectedIcon = leaflet.icon({
-    iconUrl: URL_MARKER_CURRENT,
+    iconUrl: MarkerUrl.Current,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
