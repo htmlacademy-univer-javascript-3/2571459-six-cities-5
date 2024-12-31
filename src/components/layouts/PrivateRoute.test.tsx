@@ -3,9 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthorizationStatus, AppRoute } from '@constants';
-import { useAppStoreSelector } from '@hooks'; // Импортируем хук
+import { useAppStoreSelector } from '@hooks';
 
-// Мокаем хук useAppStoreSelector
 vi.mock('@hooks', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@hooks')>()),
   useAppStoreSelector: vi.fn(),
@@ -19,7 +18,6 @@ describe('PrivateRoute', () => {
   });
 
   it('should render children if the user is authorized', () => {
-    // Мокаем статус авторизации
     mockUseAppStoreSelector.mockReturnValue(AuthorizationStatus.Auth);
 
     const { getByText } = render(
@@ -34,7 +32,6 @@ describe('PrivateRoute', () => {
   });
 
   it('should navigate to login if the user is not authorized', () => {
-    // Мокаем статус авторизации
     mockUseAppStoreSelector.mockReturnValue(AuthorizationStatus.NoAuth);
 
     const { queryByText } = render(
