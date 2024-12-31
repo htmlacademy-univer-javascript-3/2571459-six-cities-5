@@ -1,6 +1,6 @@
 import { offersReducer } from './offersReducer';
-import { setOffers, setHoveredOffer, setNearbyOffers, setFavorites, setDetailedOffer, setComments } from '@store-actions';
-import {CreateCommentMock, CreateOfferMock} from "../../mocks/testsMockHelper.ts";
+import { setOffers, setHoveredOffer, setNearbyOffers, setFavorites, setComments } from '@store-actions';
+import {CreateCommentMock, CreateOfferMock} from '../../mocks/testsMockHelper.ts';
 
 const initialState = {
   offers: [],
